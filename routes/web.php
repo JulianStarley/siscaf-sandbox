@@ -20,3 +20,15 @@ Route::get('/', function () {
 Route::get('/dashboardGerencial', function(){
     return view ('dashboardGerencial');
 });
+
+Route::get('/medicamentos', function(){
+    return view('medicamentos');
+});
+
+Route::get('/farmaceuticos', function(){
+    return view('farmaceuticos');
+});
+
+Route::get('/unidades', function(){
+    return view('unidades');
+});
