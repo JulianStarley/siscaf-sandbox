@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <title>{{ config('app.name', 'Cadastro de Medicamentos versão com Cod_barras x Lote') }}</title>
     <style>
@@ -57,8 +58,18 @@
                         <div class="form-group">
                             <label for="codigo">Código de Barras <h11 style="color: red;">*</h11></label>
                             <input type="text" id="codigoEAN" required name="cod_barras" maxlength="13" class="form-control">
-                            <button type="button" onclick="validarEAN13()">Validar</button>
+                            <button type="button" class="btn btn-info" onclick="validarEAN13()">Validar</button>
                             <p id="resultado"></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 col-lg-offset-2">
+                        <div class="form-group">
+                            <label for="codigo">Estoque inicial <h11 style="color: red;">*</h11></label>
+                            <input type="number" id="quantidade" required name="quantidade" maxlength="13" class="form-control">
                         </div>
                     </div>
 
@@ -67,7 +78,7 @@
                     <div class="col-md-12 col-lg-offset-2">
                         <div class="form-group">
 
-                            <label class="form-label" style="padding-left:0px; "><b>&nbsp;</b> Ativo ?</label>
+                            <label class="form-label" style="padding-left:0px; "><b></b> Ativo ?</label>
 
                             <div class="form-outline">
 

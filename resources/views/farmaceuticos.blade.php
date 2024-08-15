@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <title>{{ config('app.name', 'Cadastro de Medicamentos versão com Cod_barras x Lote') }}</title>
     <style>
@@ -78,7 +79,7 @@
                         <div class="col-md-6 col-lg-offset-2">
                             <div class="form-group">
                                 <label for="codigo">Observação <h11 style="color: red;">*</h11></label>
-                                <input type="text" required name="codigo" maxlength="20" class="form-control" value="">
+                                <textarea rows="6" cols="33" required name="codigo" maxlength="500" class="form-control" value=""></textarea>
 
                             </div>
                         </div>
