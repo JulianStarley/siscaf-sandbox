@@ -19,16 +19,20 @@ Route::get('/', function () {
 
 Route::get('/dashboardGerencial', function(){
     return view ('dashboardGerencial');
-});
+})->name('dashboardGerencial');
 
 Route::get('/medicamentos', function(){
     return view('medicamentos');
-});
+})->name('medicamentos');
 
 Route::get('/farmaceuticos', function(){
     return view('farmaceuticos');
-});
+})->name('farmaceuticos');
 
 Route::get('/unidades', function(){
     return view('unidades');
-});
+})->name('unidades');
+
+Route::get('/testescalculos', function(){
+    return view('testescalculos');
+})->name('testescalculos');

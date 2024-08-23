@@ -24,6 +24,8 @@ class Medicamentos extends Model
         'quantidade',
         'lote',
         'cod_barras',
+        'validade',
+        'fator_embalagem',
         '[observacao]'
      ];
 }

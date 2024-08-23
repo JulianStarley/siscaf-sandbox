@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+@extends('layouts.app')
 <head>
 
     <!--importação de cdn para estilizar o formulario pendentes-->
@@ -6,173 +6,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>{{ config('app.name', 'Cadastro de Medicamentos versão com Cod_barras x Lote') }}</title>
+    <title>{{ config('app.name', 'Cadastro de Unidades') }}</title>
 
 </head>
-<body>
-    <div class="container">
+@section('content')
 
                 <div>
                     <a type="button" class="btn btn-secondary" href="javascript:history.back()">Voltar</a>
-
                 </div>
 
-                <br>
 
-            <form id="formID" class="needs-validation was-validated" action="<?php echo url('farmaceutico/add'); ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data" novalidate="">
+
+            <form id="form-unidade-ID" class="needs-validation" action="<?php echo url('farmaceutico/add'); ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data" novalidate>
                 {!! csrf_field() !!}
-                <label><h5 style="color: red">*</h5><h11 style="color: rgb(177, 173, 173);"">(preenchimento obrigatório)</h11></label>
+                <label><h5 style="color: red">*</h5><h11 style="color: rgb(177, 173, 173);">(preenchimento obrigatório)</h11></label>
 
-                <div class="row">
-                    <div class="col-md-6 col-lg-offset-2 position-relative">
-                        <div class="form-group">
+    <div class="container mt-5">
+                <div class="mb-3 form-group col-lg-6">
+                    <label for="unidade">Unidade</label>
+                    <input type="text" class="form-control" id="unidade" name="unidade" required>
+                        <div class="invalid-feedback"> Por favor, preencha o campo Unidade </div>
+                </div>
 
-                            <label for="unidade1" class="form-label">Unidade <h11 style="color: red">*</h11></label>
-                            <input type="text" name="unidade" maxlength="300" id="unidade1" class="form-control" required>
-                            <span class="invalid-tooltip">
-                                Por favor, preencha o campo solicitado!
-                            </span>
+                <div class="mb-3 form-group col-lg-3">
+                    <label for="populacao_adstrita">População Adstrita</label>
+                    <input type="number" class="form-control" id="populacao_adstrita" name="populacao_adstrita" required>
+                        <div class="invalid-feedback"> Por favor, preencha o campo População Adstrita </div>
+                </div>
 
-                        </div>
-                    </div>
+                <div class="mb-3 form-group col-lg-3">
+                    <label for="distancia_caf">Distância CAF</label>
+                    <input type="number" class="form-control" id="distancia_caf" name="distancia_caf" required>
+                        <div class="invalid-feedback"> Por favor, preencha o campo População Adstrita </div>
+                </div>
+
+                <div class="mb-3 form-group col-lg-3">
+                    <label for="distancia_referencia_modulo">Distância Referência Módulo</label>
+                    <input type="number" class="form-control" id="distancia_referencia_modulo" name="distancia_referencia_modulo" required>
+                    <div class="invalid-feedback"> Por favor, preencha o campo População Adstrita </div>
+                </div>
+
+                <div class="mb-3 form-group col-lg-3">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" class="form-control" id="telefone" name="telefone" required pattern="[0-9]{2} [0-9]{4}-[0-9]{4}">
+                    <div class="invalid-feedback"> Por favor, preencha o campo Telefone </div<div class="invalid-feedback"> Por favor, preencha o campo População Adstrita </div>
+                </div>
+
+                <div class="mt-4 mb-3 form-group form-check form-switch">
+                    <label for="ativo" class="form-check-label">Ativo</label>
+                    <input class="form-check-input" type="checkbox" id="ativo" name="ativo" value="S">
 
                 </div>
 
-
-                <div class="row">
-                    <div class="col-md-6 col-lg-offset-2">
-                        <div class="form-group">
-                            <label for="modulo">Módulo <h11 style="color: red;">*</h11></label>
-                            <input type="text" required name="modulo" maxlength="20" class="form-control" required>
-
-                        </div>
-                    </div>
-
+                <div class="mb-3 form-group col-lg">
+                    <label for="funcionarios_responsaveis">Funcionários Responsáveis</label>
+                    <textarea class="form-control" rows="5" id="funcionarios_responsaveis" name="funcionarios_responsaveis"></textarea>
                 </div>
 
-
-                <div class="row">
-                    <div class="col-md-6 col-lg-offset-2">
-                        <div class="form-group">
-                            <label for="pop_adstrita">População Adstrita <h11 style="color: red;">*</h11></label>
-                            <input type="text" required name="populacao_adstrita" maxlength="20" class="form-control" required>
-
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-md-6 col-lg-offset-2">
-                            <div class="form-group">
-                                <label for="dist_caf">Distancia CAF <h11 style="color: red;">*</h11></label>
-                                <input type="text" required name="distancia_caf" maxlength="20" class="form-control" required>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 col-lg-offset-2">
-                            <div class="form-group">
-                                <label for="dist_ref_modulo">Distancia de referencia do módulo <h11 style="color: red;">*</h11></label>
-                                <input type="text" required name="distnacia_referencia_modulo" maxlength="20" class="form-control" required>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 col-lg-offset-2">
-                            <div class="form-group">
-                                <label for="func_responsaveis">Funcionarios responsaveis <h11 style="color: red;">*</h11></label>
-                                <input type="text" required name="funcionarios_responsaveis" maxlength="20" class="form-control" required>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 col-lg-offset-2">
-                            <div class="form-group">
-                                <label for="telefone">Telefone</label>
-                                <input type="text" required name="telefone" maxlength="20" class="form-control" value="">
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 col-lg-offset-2">
-                            <div class="form-group">
-                                <label for="observacao">Observação</label>
-                                <input type="text" required name="observacao" maxlength="20" class="form-control" value="">
-
-                            </div>
-                        </div>
-
-                    </div>
-
-
+                <div class="mb-3 form-group col-lg">
+                    <label for="observacao">Observação</label>
+                    <textarea class="form-control" rows="5" id="observacao" name="observacao"></textarea>
                 </div>
-                <div class="row">
-                    <div class="col-md-12 col-lg-offset-2">
-                        <div class="form-group">
 
-                            <label class="form-label" style="padding-left:0px; "><b>&nbsp;</b> Ativo ?</label>
-
-                            <div class="form-outline">
-
-                                <label class="switch">
-
-                                    <input onchange="desabilitarAtivo(this)" name="ativo_toggle" id="ativo_toggle" value="S" type="checkbox" >
-
-                                    <span class="slider"></span>
-
-                                </label>
-
-                            </div>
-                        </div>
-                    </div>
-
-                <br><br>
-
-                <!-- /.row -->
-
-                <div class="row">
-                    <div class="col-md-12 col-lg-offset-2">
-                        <br>
-                        <div style="float:right;">
-                            <button type="submit" class="btn btn-primary" >Finalizar</button>
-                        </div>
-                    </div>
+                <div class="mb-5 text-end">
+                    <button type="button" class="btn btn-secondary" id="limpar">Limpar</button>
+                    <button type="submit" class="btn btn-primary" >Finalizar</button>
                 </div>
-            </form>
-            <form id="formID" class="needs-validation" action="<?php echo url('farmaceutico/add'); ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data" novalidate>
-                {!! csrf_field() !!}
-                <label><h5 style="color: red">*</h5><h11 style="color: rgb(177, 173, 173);"">(preenchimento obrigatório)</h11></label>
+    </div>
+</form>
 
-                <button type="submit" class="btn btn-primary">Enviar</button>
-            </form>
-
-            <script>
-            // Seleciona o formulário
-            const form = document.getElementById('formID');
-
-            // Adiciona um evento de escuta para o evento de submit
-            form.addEventListener('submit', (event) => {
-                // Evita o envio padrão do formulário se ele for inválido
-                if (!form.checkValidity()) {
+<script>
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            var form = document.getElementById('form-unidade-ID');
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
                     event.preventDefault();
                     event.stopPropagation();
                 }
-
-                // Adiciona a classe 'was-validated' para mostrar todas as mensagens de erro
                 form.classList.add('was-validated');
-            });
-            </script>
-        </div>
+            }, false);
+        }, false);
 
-</body>
-</html>
+    })();
+</script>
+
+<script>
+    document.getElementById('limpar').addEventListener('click', function(){
+        document.getElementById('form-unidade-ID').reset();
+        document.querySelectorAll('.errorMessage') forEach(funtion(element) {
+            element.style.display: 'none';
+        });
+    });
+</script>
+@endsection

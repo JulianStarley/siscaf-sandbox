@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+@extends('layouts.app')
 <head>
 
     <!--importação de cdn para estilizar o formulario pendentes-->
@@ -18,7 +18,7 @@
         }
     </style>
 </head>
-<body>
+@section('content')
     <div class="container">
 
                 <div>
@@ -121,5 +121,4 @@
             </form>
         </div>
 
-</body>
-</html>
+@endsection

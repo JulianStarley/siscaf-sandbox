@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+@extends('layouts.app')
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'PROCESSO SELETIVO PARA OBTENÇÃO DA PRIMEIRA HABILITAÇÃO') }}</title>
-
+    <title>Dashboard</title>
+    
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
@@ -78,12 +78,8 @@
 
     <!-- Icones -->
     <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
-
-
-
-
 </head>
-<body>
+@section('content')
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-4">
@@ -237,5 +233,4 @@ function animateCount() { //animacao de rotacao e contagem de valores
 
 animateCount();
 </script>
-</body>
-</html>
+@endsection

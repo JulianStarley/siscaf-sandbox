@@ -1,164 +1,136 @@
-<!DOCTYPE html>
+@extends('layouts.app')
 <head>
-
-    <!--importação de cdn para estilizar o formulario pendentes-->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!--Bootstrap 5.3 e 5.3.3-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <!--Bootstrap / Javascript 5.3.3-->
+    <title>Cadastro de Medicamentos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <title>{{ config('app.name', 'Cadastro de Medicamentos versão com Cod_barras x Lote') }}</title>
     <style>
-        .valid{
-            color: green;
-        }
-
-        .invalid{
-            color: red
+        .error-message {
+            color: red;
+            font-size: 0.875em;
+            display: none;
         }
     </style>
 </head>
-<body>
-    <div class="container">
+@section('content')
+    <div class="container mt-5">
+        <h2>Cadastro de Medicamentos</h2>
+        <form id="medicamentoForm" novalidate>
+            <div class="mb-3 col-lg-6">
+                <label for="medicamento" class="form-label">Nome do Medicamento</label>
+                <input type="text" class="form-control" id="medicamento" name="medicamento">
+                <span class="error-message">Nome do medicamento é obrigatório.</span>
+            </div>
 
-                <div>
-                    <a type="button" class="btn btn-secondary" href="javascript:history.back()">Voltar</a>
+            <div class="mb-2 col-lg-3">
+                <label for="codigo" class="form-label">Código do Medicamento</label>
+                <input type="text" class="form-control" id="codigo" name="codigo" required>
+                <div class="error-message">Código do medicamento é obrigatório.</div>
+            </div>
 
-                </div>
+            <div class="mb-3 col-lg-3">
+                <label for="cod_Barras" class="form-label">Código de Barras (EAN13)</label>
+                <input type="number" class="form-control" id="cod_barras" name="cod_barras" required>
+                <div class="error-message">Código de barras inválido ou ausente.</div>
+            </div>
 
-                <br>
+            <div class="mb-3 col-lg-3">
+                <label for="quantidade" class="form-label">Estoque Inicial</label>
+                <input type="number" class="form-control" id="quantidade" name="quantidade" required>
+                <div class="error-message">Estoque inicial é obrigatório.</div>
+            </div>
 
-            <form id="formID" action="<?php echo url('medicamento/add'); ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-                {!! csrf_field() !!}
+            <div class="mb-3 col-lg-3">
+                <label for="validade" class="form-label">Validade: </label>
+                <input type="date" class="form-control" id="validade" name="quantidade" required pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" placeholder="dd/mm/aaaa">
+                <div class="error-message">Preencher a validade é obrigatória.</div>
+            </div>
 
-                <div class="row">
-                    <div class="col-md-6 col-lg-offset-2">
-                        <div class="form-group">
-                            <label for="medicamento">Nome do Medicamento <h11 style="color: red;">*</h11></label>
-                            <input type="text" name="medicamento" maxlength="300" class="form-control" required>
-                            <span class="invalid-tooltip">
-                                O Nome do medicamento não pode ser vazio, por favor preencha!
-                            </span>
-                        </div>
-                    </div>
+            <div class="mb-3 col-lg-3">
+                <label for="fator_embalagem" class="form-label">Fator embalagem:</label>
+                <input type="number" class="form-control" id="fator_embalagem" name="fator_embalagem" required>
+                <div class="error-message">Preencher a validade é obrigatória.</div>
+            </div>
 
-                </div>
+            <div class="mb-6 col-lg-12">
+                <label for="observacao" class="form-label">Observações: </label>
+                <textarea class="form-control" rows="5" id="observacao" name="observacao"></textarea>
+            </div>
 
-                <div class="row">
-                    <div class="col-md-6 col-lg-offset-2">
-                        <div class="form-group">
-                            <label for="codigo">Código do Medicamento <h11 style="color: red;">*</h11></label>
-                            <input type="text" required name="codigo" maxlength="20" class="form-control" required>
-                            <span class="invalid-tooltip">
-                                O Código não pode ser vazio, por favor preencha!
-                            </span>
-
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 col-lg-offset-2 position-relative">
-                        <div class="form-group">
-                            <label for="codigo">Código de Barras <h11 style="color: red;">*</h11></label>
-                            <input type="number" id="codigoEAN" required name="cod_barras" maxlength="13" class="form-control">
-                            <p id="resultado"></p>
-                            <span class="invalid-tooltip">
-                                O preenchimento é obrigatório, por favor revise!
-                            </span>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <div class="col-md-3 col-lg-offset-2">
-                        <div class="form-group">
-                            <label for="codigo">Estoque inicial <h11 style="color: red;">*</h11></label>
-                            <input type="number" id="quantidade" required name="quantidade" maxlength="13" class="form-control">
-                            <span class="invalid-tooltip">
-                                Por favor inserir a quantidade!
-                            </span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row">
-                    <div class="col-md-12 col-lg-offset-2">
-                        <div class="form-group">
-
-                            <label class="form-label" style="padding-left:0px; "><b></b> Ativo ?</label>
-
-                            <div class="form-outline">
-
-                                <label class="switch">
-
-                                    <input onchange="desabilitarAtivo(this)" name="ativo_toggle" id="ativo_toggle" value="S" type="checkbox" required>
-
-                                    <span class="slider"></span>
-
-                                </label>
-
-                            </div>
-                        </div>
-                    </div>
-
-                <br><br>
-
-                <!-- /.row -->
-
-                <div class="row">
-                    <div class="col-md-12 col-lg-offset-2">
-                        <br>
-                        <div style="float:right;">
-                            <button type="submit" class="btn btn-primary" id="finalizar_med" onclick="validarEAN13()" >Finalizar</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
+            <div class="mt-4 mb-3 form-check form-switch">
+                <label class="form-check-label" for="ativo">Ativo ?</label>
+                <input class="form-check-input" type="checkbox"  id="ativo" name="ativo" value="S" checked>
+            </div>
+        <div class="mb-3 text-end">
+            <button type="button" class="btn btn-secondary" id="limpar">Limpar</button>
+            <button type="submit" class="btn btn-primary" >Finalizar</button>
         </div>
-        <script>
-            function validarEAN13() {
-                const formulario = document.getElementById('formID');
-                const campoNome = document.getElementById('codigoEAN');
-                const codigo = document.getElementById('codigoEAN').value;
-                const resultado = document.getElementById('resultado');
+        </form>
+    </div>
 
-                if (campoNome.value  === '' || codigo.length !== 13 || !/^\d{13}$/.test(codigo)){
-                    alert ('O preenchimento do código é obrigatório, revise antes de continuar!');
-                    return false;
-                }
-
-                if (codigo.length !== 13 || !/^\d{13}$/.test(codigo)) {
-                    resultado.textContent = "O código deve ter exatamente 13 dígitos numéricos.";
-                    resultado.className = "invalid";
-                    return false;
-                }
-
-                const digitoVerificador = parseInt(codigo.charAt(12));
-                const soma = codigo
-                    .substring(0, 12)
-                    .split('')
-                    .map(Number)
-                    .reduce((acc, num, index) => acc + num * (index % 2 === 0 ? 1 : 3), 0);
-
-                const digitoCalculado = (10 - (soma % 10)) % 10;
-
-                if (digitoCalculado === digitoVerificador) {
-                    resultado.textContent = "O código EAN-13 é válido.";
-                    resultado.className = "valid";
-                } else {
-                    resultado.textContent = "O código EAN-13 é inválido.";
-                    resultado.className = "invalid";
-                }
-
-            
+    <script>
+        function validarEAN13(cod_barras) {
+            if (!cod_barras || cod_barras.toString().length !== 13) {
+                return false;
             }
-        </script>
+            let sum = 0;
+            for (let i = 0; i < 12; i++) {
+                let num = parseInt(cod_barras[i]);
+                if (i % 2 === 0) {
+                    sum += num;
+                } else {
+                    sum += num * 3;
+                }
+            }
+            let checkDigit = (10 - (sum % 10)) % 10;
+            return checkDigit === parseInt(cod_barras[12]);
+        }
 
-</body>
-</html>
+        document.getElementById('medicamentoForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let isValid = true;
+        const fields = [
+            { field: medicamento = document.getElementById('medicamento'), message: 'Nome do medicamento é obrigatório!'},
+            { field: codigo = document.getElementById('codigo'), message: 'Por favor informe o código do medicamento!'},
+            { field: cod_barras = document.getElementById('cod_barras'), message: 'Código de barras inválido ou ausente!'},
+            { field: quantidade = document.getElementById('quantidade'), message: 'O estoque do medicamento não pode ser vazio, por favor informe!'},
+            { field: validade = document.getElementById('validade')},
+            { field: fator_embalagem = document.getElementById('fator_embalagem'),}
+            { field: ativo = document.getElementById('ativo')},
+        ];
+
+
+            fields.forEach(field => {
+                if (field.value.trim() === '') {
+                    field.nextElementSibling.style.display = 'block';
+                    isValid = false;
+                } else {
+                    field.nextElementSibling.style.display = 'none';
+                }
+            });
+
+            if (!validarEAN13(cod_barras.value)) {
+                codigoBarras.nextElementSibling.style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('Formulário enviado com sucesso!');
+
+            }
+            document.getElementById('finalizar').addEventListener('click', function() {
+                validarFormulario();
+        });
+
+        document.getElementById('limpar').addEventListener('click', function() {
+            document.getElementById('medicamentoForm').reset();
+            document.querySelectorAll('.error-message').forEach(function(element) {
+                element.style.display = 'none';
+            });
+        });
+    });
+    </script>
+@endsection
