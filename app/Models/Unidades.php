@@ -21,7 +21,7 @@ class Unidades extends Model
         'populacao_adstrita',
         'distancia_caf',
         'distancia_referencia_modulo',
-        'funcionario_responsaveis',
+        'funcionarios_responsaveis',
         'telefone',
         '[observacao]',
         'ativo'

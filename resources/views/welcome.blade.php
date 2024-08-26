@@ -5,10 +5,10 @@
     <h2>sidebar</h2>
  <ul>
     <li><a href="{{ route('dashboardGerencial') }}" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover">Dashboard Gerencial</a></li>
-    <li><a href="{{ route('medicamentos') }}" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover"></a>Medicamentos</li>
-    <li><a href="{{ route('farmaceuticos') }}" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover"></a>Farmaceuticos</li>
-    <li><a href="{{ route('unidades') }}" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover"></a>Unidades</li>
-    <li><a href="{{ route('testescalculos') }}" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover"></a>Testes Calculos</li>
+    <li><a href="{{ route('medicamentos') }}" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover">Medicamentos</a></li>
+    <li><a href="{{ route('farmaceuticos') }}" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover">Farmaceuticos</a></li>
+    <li><a href="{{ route('unidades') }}" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover">Unidades</a></li>
+    <li><a href="{{ route('testescalculos') }}" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover">Testes Calculos</a></li>
  </ul>
 @endsection
 

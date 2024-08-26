@@ -15,16 +15,14 @@
                     <a type="button" class="btn btn-secondary" href="javascript:history.back()">Voltar</a>
                 </div>
 
-
-
-            <form id="form-unidade-ID" class="needs-validation" action="<?php echo url('farmaceutico/add'); ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data" novalidate>
+            <form id="form-unidade-ID" class="needs-validation" action="<?php echo url('undidades/store'); ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data" novalidate>
                 {!! csrf_field() !!}
                 <label><h5 style="color: red">*</h5><h11 style="color: rgb(177, 173, 173);">(preenchimento obrigatório)</h11></label>
 
     <div class="container mt-5">
                 <div class="mb-3 form-group col-lg-6">
                     <label for="unidade">Unidade</label>
-                    <input type="text" class="form-control" id="unidade" name="unidade" required>
+                    <input type="text" class="form-control" id="unidades" name="unidades" required>
                         <div class="invalid-feedback"> Por favor, preencha o campo Unidade </div>
                 </div>
 

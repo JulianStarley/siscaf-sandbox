@@ -13,7 +13,7 @@ class MedicamentoController extends Controller
      */
     public function index()
     {
-        //
+        return view('medicamentos');
     }
 
     /**
@@ -82,5 +82,5 @@ class MedicamentoController extends Controller
         //
     }
 
-    
+
 }

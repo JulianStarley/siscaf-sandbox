@@ -21,17 +21,16 @@ Route::get('/dashboardGerencial', function(){
     return view ('dashboardGerencial');
 })->name('dashboardGerencial');
 
-Route::get('/medicamentos', function(){
-    return view('medicamentos');
-})->name('medicamentos');
+Route::get('/medicamentos', '\App\Http\Controllers\MedicamentoController@index')->name('medicamentos');
 
-Route::get('/farmaceuticos', function(){
-    return view('farmaceuticos');
-})->name('farmaceuticos');
+Route::get('/farmaceuticos', '\App\Http\Controllers\FarmaceuticoController@index')->name('farmaceuticos');
 
-Route::get('/unidades', function(){
-    return view('unidades');
-})->name('unidades');
+Route::get('/unidades', '\App\Http\Controllers\UnidadesController@index')->name('unidades.index');
+Route::get('/unidades/create', '\App\Http\Controllers\UnidadesController@create')->name('unidades.create');
+Route::post('/unidades/store', '\App\Http\Controllers\UnidadesController@store')->name('unidades.store');
+Route::get('/unidades/{id}/edit', '\App\Http\Controllers\UnidadesController@edit')->name('unidades.edit');
+Route::put('/unidades/{id}/update', '\App\Http\Controllers\UnidadesController@update')->name('unidades.update');
+Route::delete('/unidades/{id}/delete', '\App\Http\Controllers\UnidadesController@delete')->name('unidades.delete');
 
 Route::get('/testescalculos', function(){
     return view('testescalculos');
