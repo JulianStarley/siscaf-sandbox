@@ -16,14 +16,20 @@ class Unidades extends Model
      *
      * @var array
      */
+
+     use HasFactory;
     protected $fillable = [
         'unidade',
-        'populacao_adstrita',
-        'distancia_caf',
-        'distancia_referencia_modulo',
+        'modulo',
         'funcionarios_responsaveis',
         'telefone',
         '[observacao]',
         'ativo'
+    ];
+
+    protected $casts = [
+        'populacao_adstrita' => 'decimal:2',
+        'distancia_caf' =>  'decimal:2',
+        'distancia_referencia_modulo' =>  'decimal:2',
     ];
 }

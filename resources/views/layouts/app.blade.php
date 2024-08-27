@@ -41,6 +41,7 @@
                 <!-- Footer -->
                 <div class="row bg-light" style="height: 10vh;">
                     <div class="col-12 d-flex align-items-center h-100">
+                        @2024 Desenvolvido pelo departamento de tecnologia, Gestão e inovação.
                         @yield('footer')
                     </div>
                 </div>

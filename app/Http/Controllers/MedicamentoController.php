@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Medicamentos;
 use Illuminate\Http\Request;
 
 class MedicamentoController extends Controller
@@ -13,7 +14,7 @@ class MedicamentoController extends Controller
      */
     public function index()
     {
-        return view('medicamentos');
+        return view('medicamentos.create');
     }
 
     /**
@@ -34,7 +35,21 @@ class MedicamentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+    $medicamento = new Medicamentos();
+    $medicamento->medicamento = $request->input('medicamento');
+    $medicamento->codigo = $request->input('codigo');
+    $medicamento->ativo = $request->input('ativo');
+    $medicamento->quantidade = $request->input('quantidade');
+    $medicamento->validade = $request->input('validade');
+    $medicamento->lote = $request->input('lote');
+    $medicamento->cod_barras = $request->input('cod_barras');
+    $medicamento->fator_embalagem = $request->input('fator_embalagem');
+    $medicamento->observacao = $request->input('observacao');
+    $medicamento->user_id = $request->input('user_id');
+    $medicamento->save();
+
+   return redirect()->route('medicamentos.index')->with('success', 'Dados  do medicamento cadastrados com sucesso!');
     }
 
     /**
@@ -56,7 +71,7 @@ class MedicamentoController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**

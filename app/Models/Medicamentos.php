@@ -22,10 +22,11 @@ class Medicamentos extends Model
         'codigo',
         'ativo',
         'quantidade',
+        'validade',
         'lote',
         'cod_barras',
-        'validade',
         'fator_embalagem',
-        '[observacao]'
+        '[observacao]',
+        'user_id'
      ];
 }

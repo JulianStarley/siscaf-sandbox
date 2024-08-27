@@ -9,9 +9,9 @@
 @endsection
 
 @section('content')
-<form method="POST" action="{{ route('unidades.update', $unidades->id) }}">
+<form method="POST" action="{{ route('unidades.delete', $unidades->id) }}">
     @csrf
-    @method('PUT')
+    @method('DELETE')
     <div class="form-group">
         <label for="unidade">Unidade</label>
         <input type="text" class="form-control" id="unidades" name="unidades" value="{{ $unidades->unidade }}" required>
@@ -28,6 +28,8 @@
         <label for="distancia_referencia_modulo">Distância Referência Módulo</label>
         <input type="number" class="form-control" id="distancia_referencia_modulo" name="distancia_referencia_modulo" value="{{ $unidades->distancia_referencia_modulo }}" required>
     </div>
+    <button class="btn btn-primary">Delete</button>
+</form>
 @endsection
 
 @section('footer')

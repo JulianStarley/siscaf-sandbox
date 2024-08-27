@@ -9,9 +9,8 @@
 @endsection
 
 @section('content')
-<form method="POST" action="{{ route('unidades.update', $unidades->id) }}">
+<form method="POST" action="{{ route('unidades.store', $unidades->id) }}">
     @csrf
-    @method('PUT')
     <div class="form-group">
         <label for="unidade">Unidade</label>
         <input type="text" class="form-control" id="unidades" name="unidades" value="{{ $unidades->unidade }}" required>

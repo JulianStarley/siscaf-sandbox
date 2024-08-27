@@ -25,7 +25,7 @@ class UnidadesController extends Controller
      */
     public function create()
     {
-        return view('unidades.create');
+        return  view('unidades.create');
     }
 
     /**
@@ -48,7 +48,8 @@ class UnidadesController extends Controller
         ]);
 
         $unidades = new Unidades();
-        $unidades->unidades = $request->input('unidades');
+        $unidades->unidade = $request->input('unidades');
+        $unidades->modulo = $request->input('modulo');
         $unidades->populacao_adstrita = $request->input('populacao_adstrita');
         $unidades->distancia_caf = $request->input('distancia_caf');
         $unidades->distancia_referencia_modulo = $request->input('distancia_referencia_modulo');
@@ -94,25 +95,15 @@ class UnidadesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'unidades' => 'required',
-            'populacao_adstrita' => 'required',
-            'distancia_caf' => 'required',
-            'distancia_referencia_modulo' => 'required',
-            'funcionarios_responsaveis' => 'required',
-            'telefone' => 'required',
-            'observacao' => 'required',
-            'ativo' => 'required',
 
-        ]);
 
         $unidades = Unidades::find($id);
         $unidades->unidades = $request->input('unidades');
+        $unidades->modulo = $request->input('modulo');
         $unidades->populacao_adstrita = $request->input('populacao_adstrita');
         $unidades->distancia_caf = $request->input('distancia_caf');
         $unidades->distancia_referencia_modulo = $request->input('distancia_referencia_modulo');
         $unidades->funcionarios_responsaveis = $request->input('funcionarios_responsaveis');
-        $unidades->telefone = $request->input('telefone');
         $unidades->observacao = $request->input('observacao');
         $unidades->ativo = $request->input('ativo');
         $unidades->save();

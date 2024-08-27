@@ -22,6 +22,11 @@ Route::get('/dashboardGerencial', function(){
 })->name('dashboardGerencial');
 
 Route::get('/medicamentos', '\App\Http\Controllers\MedicamentoController@index')->name('medicamentos');
+Route::get('/medicamentos/create', '\App\Http\Controllers\UnidadesController@create')->name('medicamentos.create');
+Route::post('/medicamentos/store', '\App\Http\Controllers\UnidadesController@store')->name('medicamentos.store');
+Route::get('/medicamentos/{id}/edit', '\App\Http\Controllers\UnidadesController@edit')->name('medicamentos.edit');
+Route::put('/medicamentos/{id}/update', '\App\Http\Controllers\UnidadesController@update')->name('medicamentos.update');
+Route::delete('/medicamentos/{id}/delete', '\App\Http\Controllers\UnidadesController@delete')->name('medicamentos.delete');
 
 Route::get('/farmaceuticos', '\App\Http\Controllers\FarmaceuticoController@index')->name('farmaceuticos');
 
@@ -29,7 +34,7 @@ Route::get('/unidades', '\App\Http\Controllers\UnidadesController@index')->name(
 Route::get('/unidades/create', '\App\Http\Controllers\UnidadesController@create')->name('unidades.create');
 Route::post('/unidades/store', '\App\Http\Controllers\UnidadesController@store')->name('unidades.store');
 Route::get('/unidades/{id}/edit', '\App\Http\Controllers\UnidadesController@edit')->name('unidades.edit');
-Route::put('/unidades/{id}/update', '\App\Http\Controllers\UnidadesController@update')->name('unidades.update');
+Route::put('/unidades/{id}', '\App\Http\Controllers\UnidadesController@update')->name('unidades.update');
 Route::delete('/unidades/{id}/delete', '\App\Http\Controllers\UnidadesController@delete')->name('unidades.delete');
 
 Route::get('/testescalculos', function(){
