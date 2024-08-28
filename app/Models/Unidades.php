@@ -19,6 +19,8 @@ class Unidades extends Model
 
      use HasFactory;
     protected $fillable = [
+        'pessoas_id',
+        'tipo_farmacia',
         'unidade',
         'modulo',
         'funcionarios_responsaveis',
@@ -32,4 +34,8 @@ class Unidades extends Model
         'distancia_caf' =>  'decimal:2',
         'distancia_referencia_modulo' =>  'decimal:2',
     ];
+
+    public function pessoa(){
+        return $this->belongsTo(Pessoa::class);
+    }
 }
