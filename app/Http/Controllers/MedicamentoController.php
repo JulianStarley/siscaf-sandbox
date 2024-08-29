@@ -14,7 +14,7 @@ class MedicamentoController extends Controller
      */
     public function index()
     {
-        return view('medicamentos.create');
+        return view('medicamentos.index', compact('medicamentos'));
     }
 
     /**
@@ -24,7 +24,7 @@ class MedicamentoController extends Controller
      */
     public function create()
     {
-        //
+        return view('medicamentos.create');
     }
 
     /**
@@ -60,7 +60,8 @@ class MedicamentoController extends Controller
      */
     public function show($id)
     {
-        //
+        $medicamentos = Medicamentos::find($id);
+        return view ('medicamentos.show', compact('medicamentos'));
     }
 
     /**
@@ -71,7 +72,8 @@ class MedicamentoController extends Controller
      */
     public function edit($id)
     {
-        
+        $medicamentos = Medicamentos::find($id);
+        return view('medicamentos.edit', compact('medicamentos'));
     }
 
     /**
@@ -83,7 +85,20 @@ class MedicamentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        {
+            $medicamento = Medicamentos::find($id);
+            $medicamento->medicamento = $request->input('medicamento');
+            $medicamento->codigo = $request->input('codigo');
+            $medicamento->ativo = $request->input('ativo');
+            $medicamento->quantidade = $request->input('quantidade');
+            $medicamento->validade = $request->input('validade');
+            $medicamento->lote = $request->input('lote');
+            $medicamento->cod_barras = $request->input('cod_barras');
+            $medicamento->fator_embalagem = $request->input('fator_embalagem');
+            $medicamento->observacao = $request->input('observacao');
+            $medicamento->save();
+            return redirect()->route('medicamentos.index')->with('success', 'Medicamento alterado com sucesso');
+        }
     }
 
     /**
@@ -94,7 +109,9 @@ class MedicamentoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $medicamento = Medicamentos::find($id);
+        $medicamento->delete();
+        return redirect()->route('medicamentos.index');
     }
 
 

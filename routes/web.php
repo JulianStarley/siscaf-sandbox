@@ -22,6 +22,7 @@ Route::get('/dashboardGerencial', function(){
 })->name('dashboardGerencial');
 
 Route::get('/medicamentos', '\App\Http\Controllers\MedicamentoController@index')->name('medicamentos');
+Route::get('/medicamentos/{id}/show', '\App\Http\Controllers\MedicamentoController@show')->name('medicamentos.show');
 Route::get('/medicamentos/create', '\App\Http\Controllers\UnidadesController@create')->name('medicamentos.create');
 Route::post('/medicamentos/store', '\App\Http\Controllers\UnidadesController@store')->name('medicamentos.store');
 Route::get('/medicamentos/{id}/edit', '\App\Http\Controllers\UnidadesController@edit')->name('medicamentos.edit');
@@ -48,6 +49,22 @@ Route::post('/pessoas', 'app\Http\Controllers\PessoaController@store')->name('pe
 Route::get('/pessoas/{id}/edit', 'app\Http\Controllers\PessoaController@edit')->name('pessoas.edit');
 Route::put('/pessoas/{id}', 'app\Http\Controllers\PessoaController@update')->name('pessoas.update');
 Route::delete('/pessoas/{id}', 'app\Http\Controllers\PessoaController@delete')->name('pessoas.delete');
+
+Route::get('/solicitacoes', '\App\Http\Controllers\SolicitacaoController@index')->name('solicitacoes.index');
+Route::get('/solicitacoes/create', '\App\Http\Controllers\SolicitacaoController@create')->name('solicitacoes.create');
+Route::post('/solicitacoes/store', '\App\Http\Controllers\SolicitacaoController@store')->name('solicitacoes.store');
+Route::get('/solicitacoes/{id}', '\App\Http\Controllers\SolicitacaoController@show')->name('solicitacoes.show');
+Route::get('/solicitacoes/{id}/edit', '\App\Http\Controllers\SolicitacaoController@edit')->name('solicitacoes.edit');
+Route::put('/solicitacoes/{id}', '\App\Http\Controllers\SolicitacaoController@update')->name('solicitacoes.update');
+Route::delete('/solicitacoes/{id}', '\App\Http\Controllers\SolicitacaoController@destroy')->name('solicitacoes.destroy');
+
+Route::get('/solicitacao-itens', 'SolicitacaoItemController@index')->name('solicitacao-itens.index');
+Route::get('/solicitacao-itens/create', 'SolicitacaoItemController@create')->name('solicitacao-itens.create');
+Route::post('/solicitacao-itens', 'SolicitacaoItemController@store')->name('solicitacao-itens.store');
+Route::get('/solicitacao-itens/{id}', 'SolicitacaoItemController@show')->name('solicitacao-itens.show');
+Route::get('/solicitacao-itens/{id}/edit', 'SolicitacaoItemController@edit')->name('solicitacao-itens.edit');
+Route::put('/solicitacao-itens/{id}', 'SolicitacaoItemController@update')->name('solicitacao-itens.update');
+Route::delete('/solicitacao-itens/{id}', 'SolicitacaoItemController@destroy')->name('<solicitacao-itens.destroy');
 
 Route::get('/testescalculos', function(){
     return view('testescalculos');
