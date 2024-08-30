@@ -9,6 +9,7 @@
     <li><a href="{{ route('farmaceuticos.create') }}" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover">Farmaceuticos</a></li>
     <li><a href="{{ route('unidades.create') }}" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover">Unidades</a></li>
     <li><a href="{{ route('testescalculos') }}" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover">Testes Calculos</a></li>
+    <li><a href="{{ route('solicitacoes.create') }}" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover">Abrir Solicitação</a></li>
  </ul>
 @endsection
 

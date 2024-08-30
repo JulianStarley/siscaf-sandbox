@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Consumos;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class ConsumoController extends Controller
 {
@@ -13,7 +15,8 @@ class ConsumoController extends Controller
      */
     public function index()
     {
-        //
+        $consumos = Consumos::all();
+        return view('consumos.index', compact('consumos'));
     }
 
     /**
@@ -23,7 +26,7 @@ class ConsumoController extends Controller
      */
     public function create()
     {
-        //
+        return view('consumos.create');
     }
 
     /**
@@ -34,7 +37,20 @@ class ConsumoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validade([
+            'unidade_id' => 'required',
+            'data' =>  'required|date',
+            'user_id' => 'required',
+        ]);
+
+        $consumo = new Consumos();
+        $consumo->unidade_id = $request->input('unidade_id');
+        $consumo->data = $request->input('data');
+        $consumo->user_id = $request->input('user_id');
+        $consumo->save();
+        return redirect()->route('consumos.index')->with('success', 'Consumo efetuado com sucesso!');
+
+
     }
 
     /**
@@ -45,7 +61,8 @@ class ConsumoController extends Controller
      */
     public function show($id)
     {
-        //
+        $consumo = Consumos::find($id);
+        return view('consumos.show', compact('consumo'));
     }
 
     /**
@@ -56,7 +73,8 @@ class ConsumoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $consumo = Consumos::find($id);
+        return view('consumos.edit', compact('consumo'));
     }
 
     /**
@@ -68,7 +86,18 @@ class ConsumoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'unidade_id' => 'required',
+            'data' => 'required|date',
+            'user_id' => 'required',
+        ]);
+
+        $consumo = Consumos::find($id);
+        $consumo->unidade_id = $request->input('unidade_id');
+        $consumo->data = $request->input('data');
+        $consumo->user_id = $request->input('user_id');
+        $consumo->save();
+        return redirect()->route('consumos.index')->with('success', 'Consumo atualizado com sucesso!');
     }
 
     /**
@@ -79,6 +108,8 @@ class ConsumoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $consumo = Consumos::find($id);
+        $consumo->delete();
+        return redirect()->route('consumos.index')->with('success', 'Consumo excluído com sucesso!');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Consumos_itens;
 use Illuminate\Http\Request;
 
 class ConsumoItemController extends Controller
@@ -13,7 +14,8 @@ class ConsumoItemController extends Controller
      */
     public function index()
     {
-        //
+       $consumoItens = Consumos_itens::all();
+       return view('consumo_itens.index', compact('consumoItens'));
     }
 
     /**
@@ -23,7 +25,7 @@ class ConsumoItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('consumos_itens.create');
     }
 
     /**
@@ -34,7 +36,13 @@ class ConsumoItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $consumoItem = new Consumos_itens();
+        $consumoItem->medicamento_id = $request->input('medicamento_id');
+        $consumoItem->consumo_id = $request->input('consumo_id');
+        $consumoItem->quantidade = $request->input('quantidade');
+        $consumoItem->user_id = $request->input('user_id');
+        $consumoItem->save();
+        return redirect()->route('consumo_itens.index')->with('success', 'consumo realizado com sucesso!');
     }
 
     /**
@@ -45,7 +53,8 @@ class ConsumoItemController extends Controller
      */
     public function show($id)
     {
-        //
+        $consumoItem = Consumos_itens::find($id);
+        return view('consumo_itens.show', compact('consumoItem'));
     }
 
     /**
@@ -56,7 +65,8 @@ class ConsumoItemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $consumoItem = Consumos_itens::find($id);
+        return view ('consumos_itens.edit', compact('consumos'));
     }
 
     /**
@@ -68,7 +78,13 @@ class ConsumoItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $consumoItem = Consumos_itens::find($id);
+        $consumoItem->medicamento_id = $request->input('medicamento_id');
+        $consumoItem->consumo_id = $request->input('consumo_id');
+        $consumoItem->quantidade = $request->input('quantidade');
+        $consumoItem->user_id = $request->input('user_id');
+        $consumoItem->save();
+        return redirect()->route('consumo_itens.index')->with('success', 'consumo atualizado com sucesso');
     }
 
     /**
@@ -79,6 +95,8 @@ class ConsumoItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $consumoItem = Consumos_itens::find($id);
+        $consumoItem->delete();
+        return redirect()->route('consumo_itens.index')->with('success', 'consumo excluido com sucesso');
     }
 }

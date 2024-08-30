@@ -8,8 +8,6 @@
 
 @endsection
 
-@extends('layouts.app')
-
 @section('content')
     <h1>Criar Solicitação</h1>
     <form action="{{ route('solicitacoes.store') }}" method="POST">
