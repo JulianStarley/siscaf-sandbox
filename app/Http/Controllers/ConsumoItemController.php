@@ -93,7 +93,7 @@ class ConsumoItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         $consumoItem = Consumos_itens::find($id);
         $consumoItem->delete();

@@ -13,7 +13,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>ID</th>
+
                 <th>Unidade</th>
                 <th>Farmacêutico</th>
                 <th>Medicamento</th>
@@ -26,7 +26,7 @@
         <tbody>
             @foreach($solicitacoes as $solicitacao)
                 <tr>
-                    <td>{{ $solicitacao->id }}</td>
+                    
                     <td>{{ $solicitacao->unidade->nome }}</td>
                     <td>{{ $solicitacao->farmaceutico->nome }}</td>
                     <td>{{ $solicitacao->medicamento->nome }}</td>

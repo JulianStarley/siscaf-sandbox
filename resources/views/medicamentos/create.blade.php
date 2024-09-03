@@ -8,6 +8,7 @@
 
 @endsection
 
+@section('title', 'Novo medicamento')
 @section('content')
 <form method="POST" action="{{ route('medicamentos.store') }}">
     @csrf

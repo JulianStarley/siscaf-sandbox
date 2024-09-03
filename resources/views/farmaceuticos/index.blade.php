@@ -29,15 +29,15 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($unidades as $unidade)
+            @foreach($farmaceuticos as $farmaceutico)
                 <tr>
-                    <td>{{ $unidade->unidade }}</td>
-                    <td>{{ $unidade->modulo }}</td>
-                    <td>{{ $unidade->populacao_adstrita }}</td>
-                    <td>{{ $unidade->distancia_caf }}</td>
-                    <td>{{ $unidade->distancia_referencia_modulo }}</td>
-                    <td>{{ $unidade->funcionarios_responsaveis }}</td>
-                    <td>{{ $unidade->ativo }}</td>
+                    <td>{{ $farmaceutico->unidade }}</td>
+                    <td>{{ $farmaceutico->modulo }}</td>
+                    <td>{{ $farmaceutico->populacao_adstrita }}</td>
+                    <td>{{ $farmaceutico->distancia_caf }}</td>
+                    <td>{{ $farmaceutico->distancia_referencia_modulo }}</td>
+                    <td>{{ $farmaceutico->funcionarios_responsaveis }}</td>
+                    <td>{{ $farmaceutico->ativo }}</td>
                     <td>
                         <a href="#" class="btn btn-sm btn-primary">Editar</a>
                         <a href="#" class="btn btn-sm btn-danger">Excluir</a>

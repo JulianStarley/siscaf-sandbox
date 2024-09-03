@@ -120,7 +120,7 @@ class SolicitacaoItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         $solicitacaoItem = Solicitacoes_itens::find($id);
         $solicitacaoItem->delete();

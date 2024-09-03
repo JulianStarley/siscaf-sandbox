@@ -36,8 +36,9 @@
         <div class="form-group">
             <label for="tipo_pessoa">Tipo de pessoa:</label>
             <select class="form-control" id="tipo_pessoa" name="tipo_pessoa">
-                <option value="farmaceutico">Farmacêutico</option>
-                <option value="unidade">Unidade</option>
+                <option value="farmaceutico">GESTOR</option>
+                <option value="farmaceutico">FARMACEUTICO</option>
+                <option value="unidade">FUNCIONARIO</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Criar pessoa</button>

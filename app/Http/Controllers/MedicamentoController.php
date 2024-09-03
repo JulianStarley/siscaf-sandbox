@@ -14,6 +14,7 @@ class MedicamentoController extends Controller
      */
     public function index()
     {
+        $medicamentos = Medicamentos::all();
         return view('medicamentos.index', compact('medicamentos'));
     }
 
@@ -107,7 +108,7 @@ class MedicamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         $medicamento = Medicamentos::find($id);
         $medicamento->delete();

@@ -15,8 +15,8 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>CPF</th>
                 <th>Nome</th>
+                <th>CPF</th>
                 <th>Telefone</th>
                 <th>Tipo</th>
                 <th>Ações</th>
@@ -25,8 +25,8 @@
         <tbody>
             @foreach($pessoas as $pessoa)
                 <tr>
-                    <td>{{ $pessoa->cpf }}</td>
                     <td>{{ $pessoa->nome }}</td>
+                    <td>{{ $pessoa->cpf }}</td>
                     <td>{{ $pessoa->telefone }}</td>
                     <td>{{ $pessoa->tipo_pessoa }}</td>
                     <td>

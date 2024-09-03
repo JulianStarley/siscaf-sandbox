@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pessoa extends Model
 {
-    protected $table  = 'pessoa';
+    protected $table  = 'pessoas';
 
     protected $guarded = 'id';
 
@@ -22,7 +22,8 @@ class Pessoa extends Model
         'telefone',
         'observacao',
         'user_id',
-        'tipo_pessoa'
+        'tipo_pessoa',
+        'users_id',
     ];
 
     protected $enumTipoPessoa = [
