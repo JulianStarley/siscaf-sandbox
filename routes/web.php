@@ -24,11 +24,11 @@ Route::get('/dashboardGerencial', function(){
 Route::group(['prefix' => 'medicamentos'], function() {
 Route::get('/', '\App\Http\Controllers\MedicamentoController@index')->name('medicamentos.index');
 Route::get('/{id}/show', '\App\Http\Controllers\MedicamentoController@show')->name('medicamentos.show');
-Route::get('/create', '\App\Http\Controllers\UnidadesController@create')->name('medicamentos.create');
-Route::post('/store', '\App\Http\Controllers\UnidadesController@store')->name('medicamentos.store');
-Route::get('/{id}/edit', '\App\Http\Controllers\UnidadesController@edit')->name('medicamentos.edit');
-Route::put('/{id}/update', '\App\Http\Controllers\UnidadesController@update')->name('medicamentos.update');
-Route::delete('/{id}/delete', '\App\Http\Controllers\UnidadesController@delete')->name('medicamentos.delete');
+Route::get('/create', '\App\Http\Controllers\MedicamentoController@create')->name('medicamentos.create');
+Route::post('/store', '\App\Http\Controllers\MedicamentoController@store')->name('medicamentos.store');
+Route::get('/{id}/edit', '\App\Http\Controllers\MedicamentoController@edit')->name('medicamentos.edit');
+Route::put('/{id}/update', '\App\Http\Controllers\MedicamentoController@update')->name('medicamentos.update');
+Route::delete('/{id}/delete', '\App\Http\Controllers\MedicamentoController@delete')->name('medicamentos.delete');
 });
 
 Route::group(['prefix' => 'farmaceuticos'], function() {
@@ -65,17 +65,17 @@ Route::post('/store', '\App\Http\Controllers\SolicitacaoController@store')->name
 Route::get('/{id}', '\App\Http\Controllers\SolicitacaoController@show')->name('solicitacoes.show');
 Route::get('/{id}/edit', '\App\Http\Controllers\SolicitacaoController@edit')->name('solicitacoes.edit');
 Route::put('/{id}', '\App\Http\Controllers\SolicitacaoController@update')->name('solicitacoes.update');
-Route::delete('/{id}delete', '\App\Http\Controllers\SolicitacaoController@delete')->name('solicitacoes.delete');
+Route::delete('/{id}/delete', '\App\Http\Controllers\SolicitacaoController@delete')->name('solicitacoes.delete');
 });
 
 Route::group(['prefix' => 'solicitacao-itens'], function () {
-Route::get('/solicitacao-itens', 'SolicitacaoItemController@index')->name('solicitacao-itens.index');
-Route::get('/solicitacao-itens/create', 'SolicitacaoItemController@create')->name('solicitacao-itens.create');
-Route::post('/solicitacao-itens', 'SolicitacaoItemController@store')->name('solicitacao-itens.store');
-Route::get('/solicitacao-itens/{id}', 'SolicitacaoItemController@show')->name('solicitacao-itens.show');
-Route::get('/solicitacao-itens/{id}/edit', 'SolicitacaoItemController@edit')->name('solicitacao-itens.edit');
-Route::put('/solicitacao-itens/{id}', 'SolicitacaoItemController@update')->name('solicitacao-itens.update');
-Route::delete('/solicitacao-itens/{id}', 'SolicitacaoItemController@delete')->name('<solicitacao-itens.delete');
+Route::get('/', 'App\Http\Controllers\SolicitacaoItemController@index')->name('solicitacao-itens.index');
+Route::get('/create', 'App\Http\Controllers\SolicitacaoItemController@create')->name('solicitacao-itens.create');
+Route::post('/store', 'App\Http\Controllers\SolicitacaoItemController@store')->name('solicitacao-itens.store');
+Route::get('/{id}', 'App\Http\Controllers\SolicitacaoItemController@show')->name('solicitacao-itens.show');
+Route::get('/{id}/edit', 'App\Http\Controllers\SolicitacaoItemController@edit')->name('solicitacao-itens.edit');
+Route::put('/{id}', 'App\Http\Controllers\SolicitacaoItemController@update')->name('solicitacao-itens.update');
+Route::delete('/{id}/delete', 'App\Http\Controllers\SolicitacaoItemController@delete')->name('<solicitacao-itens.delete');
 });
 
 Route::get('/testescalculos', function(){

@@ -8,10 +8,6 @@
 
 @endsection
 
-@section('title', 'Unidades')
-@section('content')
-@extends('layouts.app')
-
 @section('content')
 <div class="container-fluid">
     <div class="row">
