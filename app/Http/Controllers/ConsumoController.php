@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Consumos;
+use App\Http\Controllers\ConsumoItemController;
 use Symfony\Contracts\Service\Attribute\Required;
 
 class ConsumoController extends Controller
@@ -26,7 +27,8 @@ class ConsumoController extends Controller
      */
     public function create()
     {
-        return view('consumos.create');
+        $consumos = new Consumos();
+        return view('consumos.create', compact('consumos'));
     }
 
     /**
@@ -37,18 +39,19 @@ class ConsumoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validade([
+        $request->validate([
             'unidade_id' => 'required',
             'data' =>  'required|date',
             'user_id' => 'required',
         ]);
 
-        $consumo = new Consumos();
-        $consumo->unidade_id = $request->input('unidade_id');
-        $consumo->data = $request->input('data');
-        $consumo->user_id = $request->input('user_id');
-        $consumo->save();
-        return redirect()->route('consumos.index')->with('success', 'Consumo efetuado com sucesso!');
+        $consumos = new Consumos();
+        $consumos->fill($request->all());
+        $consumos->save();
+
+        $consumoItemController = new ConsumoItemController();
+        $consumoItemController->createItems($request,$consumos);
+        return redirect()->route('consumos.show', $consumos)->with('success', 'Consumo efetuado com sucesso!');
 
 
     }
@@ -59,10 +62,10 @@ class ConsumoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Consumos $consumos)
     {
-        $consumo = Consumos::find($id);
-        return view('consumos.show', compact('consumo'));
+
+        return view('consumos.show', compact('consumos'));
     }
 
     /**

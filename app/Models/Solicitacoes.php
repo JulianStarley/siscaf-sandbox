@@ -55,4 +55,8 @@ public function userExclusao()
 {
     return $this->belongsTo(User::class, 'user_exclusao_id');
 }
+
+public function itens(){
+    return $this->hasMany(Solicitacoes_itens::class);
+}
 }

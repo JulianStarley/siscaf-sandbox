@@ -13,7 +13,7 @@
         margin: 0;
       }
       .dropdown-menu {
-        transition: opacity 0.3s ease-in-out;
+        transition: opacity 1.0s ease-in-out;
       }
 
       .dropdown-menu.show {
@@ -88,6 +88,16 @@
                             <ul class="dropdown-menu" aria-labelledby="solicitacoes-dropdown">
                                 <li><a href="{{ route('solicitacoes.index') }}" class="dropdown-item">Listar</a></li>
                                 <li><a href="{{ route('solicitacoes.create') }}" class="dropdown-item">Incluir</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a href="#" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover dropdown-toggle" id="consumos-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                Consumos
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="consumos-dropdown">
+                                <li><a href="{{ route('consumos.index') }}" class="dropdown-item">Listar</a></li>
+                                <li><a href="{{ route('consumos.create') }}" class="dropdown-item">Incluir</a></li>
                             </ul>
                         </li>
 

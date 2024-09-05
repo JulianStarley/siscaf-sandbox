@@ -13,7 +13,6 @@
     <table class="table table-striped">
         <thead>
             <tr>
-
                 <th>Unidade</th>
                 <th>Farmacêutico</th>
                 <th>Medicamento</th>
@@ -26,12 +25,11 @@
         <tbody>
             @foreach($solicitacoes as $solicitacao)
                 <tr>
-                    
+                    <td>{{ $solicitacao->numero_solicitacao }}</td>
                     <td>{{ $solicitacao->unidade->nome }}</td>
                     <td>{{ $solicitacao->farmaceutico->nome }}</td>
                     <td>{{ $solicitacao->medicamento->nome }}</td>
                     <td>{{ $solicitacao->data_solicitacao }}</td>
-                    <td>{{ $solicitacao->numero_solicitacao }}</td>
                     <td>{{ $solicitacao->estado_solicitacao }}</td>
                     <td>
                         <a href="{{ route('solicitacoes.show', $solicitacao->id) }}">Visualizar</a>

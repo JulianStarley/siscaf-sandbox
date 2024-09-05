@@ -35,6 +35,15 @@ class SolicitacaoItemController extends Controller
         return view('solicitacao-itens.create', compact('medicamentos', 'solicitacoes', 'usuarios'));
     }
 
+    public function createItems(Request $request, Solicitacoes $solicitacoes){
+        foreach($request->input('itens') as $item){
+            $solicitacaoItem  = new Solicitacoes_itens();
+            $solicitacaoItem->solicitacao_id = $solicitacoes->id;
+            $solicitacaoItem->fill($item);
+            $solicitacaoItem->save();
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      *

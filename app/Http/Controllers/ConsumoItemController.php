@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Consumos;
 use App\Models\Consumos_itens;
 use Illuminate\Http\Request;
 
@@ -26,6 +27,18 @@ class ConsumoItemController extends Controller
     public function create()
     {
         return view('consumos_itens.create');
+    }
+
+    public function createItems(Request $request, Consumos $consumos){
+        //cria uma nova instancia de consumo itens e a relação de codigo entre consumos e consumos itens
+
+        foreach($request->input('itens') as $item){
+            $consumoItem = new Consumos_itens();
+            $consumoItem->consumo_id = $consumos->id;
+            $consumoItem->fill($item);
+            $consumoItem->save();
+
+        }
     }
 
     /**
