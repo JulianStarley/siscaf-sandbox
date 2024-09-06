@@ -11,11 +11,10 @@
 @section('content')
 
     <h1>Consumos</h1>
-
+    <a href="{{ route('consumos.create') }}" class="btn btn-success">Criar novo consumo</a>
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Unidade</th>
                 <th>Data</th>
                 <th>Usuário</th>
@@ -43,7 +42,7 @@
         </tbody>
     </table>
 
-    <a href="{{ route('consumos.create') }}" class="btn btn-success">Criar novo consumo</a>
+
 @endsection
 
 @section('footer')

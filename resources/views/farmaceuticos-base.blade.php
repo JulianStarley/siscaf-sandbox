@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-layout')
 <head>
 
     <!--importação de cdn para estilizar o formulario pendentes-->

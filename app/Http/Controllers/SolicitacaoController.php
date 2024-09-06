@@ -63,18 +63,17 @@ class SolicitacaoController extends Controller
     {
         $solicitacoes = Solicitacoes::create([]);
 
-        $itens[];
+        $itens = [];
         foreach ($request->input('medicamento_id') as $key => $medicamento_id){
         $itens[] = new Solicitacoes_itens([
         $solicitacoes->fill($request->all())
-    ]);
+        ]);
         $solicitacoes->save();
-
         $solicitacaoItemController = new SolicitacaoItemController();
         $solicitacaoItemController->createItems($request, $solicitacoes);
         return redirect()->route('solicitacoes.index', $solicitacoes)->with('sucess', 'Solicitação criada com sucesso!');
+        }
     }
-
     /**
      * Show the form for editing the specified resource.
      *

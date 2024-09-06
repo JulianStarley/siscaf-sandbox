@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-layout')
 
 @section('sidebar')
 
@@ -95,7 +95,7 @@
                 </tbody>
             </table>
         </div>
-        
+
         <button type="submit" class="btn btn-primary">Criar Solicitação</button>
     </form>
 @endsection
