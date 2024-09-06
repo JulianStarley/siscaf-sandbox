@@ -21,6 +21,7 @@ class Consumos extends Model
         'unidade_id',
         'data',
         'user_id',
+        'consumos_itens'
     ];
 
     protected $casts = [
@@ -33,5 +34,9 @@ class Consumos extends Model
 
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function consumos_itens(){
+        return $this->hasMany(Consumos_itens::class, 'consumos_id', 'id');
     }
 }

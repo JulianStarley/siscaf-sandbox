@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Consumos;
 use App\Http\Controllers\ConsumoItemController;
+use App\Models\Consumos_itens;
+use App\Models\Medicamentos;
+use App\Models\Unidades;
+use App\Models\User;
 use Symfony\Contracts\Service\Attribute\Required;
 
 class ConsumoController extends Controller
@@ -17,7 +21,8 @@ class ConsumoController extends Controller
     public function index()
     {
         $consumos = Consumos::all();
-        return view('consumos.index', compact('consumos'));
+        $consumos_itens = Consumos_itens::all();
+        return view('consumos.index', ['consumos' => $consumos, 'consumos_itens' => $consumos_itens]);
     }
 
     /**
@@ -27,8 +32,11 @@ class ConsumoController extends Controller
      */
     public function create()
     {
+        $unidades = new Unidades();
+        $users =  new User();
         $consumos = new Consumos();
-        return view('consumos.create', compact('consumos'));
+        $medicamentos = new Medicamentos();
+        return view('consumos.create', compact('consumos', 'unidades', 'users', 'medicamentos'));
     }
 
     /**

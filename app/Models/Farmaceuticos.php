@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class Farmaceuticos extends Model
 {
@@ -18,10 +20,14 @@ class Farmaceuticos extends Model
      */
 
      protected $fillable = [
-        'cpf',
-        'nome',
+        'pessoas_id',
         'crf',
-        'telefone',
-        '[observacao]'
+        'observacao',
+        'ativo',
      ];
+
+     public function pessoas()
+     {
+        return $this->hasOne(Pessoa::class);
+     }
 }

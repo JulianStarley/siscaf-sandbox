@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-layout')
 
 @section('sidebar')
 
@@ -9,21 +9,16 @@
 @endsection
 
 @section('content')
-@extends('layouts.app')
-
-@section('content')
-    <h1>Unidades</h1>
+    <h1>Farmaceutico</h1>
 
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Unidade</th>
-                <th>Módulo</th>
-                <th>População Adstrita</th>
-                <th>Distância CAF</th>
-                <th>Distância Referência Módulo</th>
-                <th>Funcionários Responsáveis</th>
+
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>CRF</th>
+                <th>Telefone</th>
                 <th>Ativo</th>
                 <th>Ações</th>
             </tr>
@@ -31,12 +26,10 @@
         <tbody>
             @foreach($farmaceuticos as $farmaceutico)
                 <tr>
-                    <td>{{ $farmaceutico->unidade }}</td>
-                    <td>{{ $farmaceutico->modulo }}</td>
-                    <td>{{ $farmaceutico->populacao_adstrita }}</td>
-                    <td>{{ $farmaceutico->distancia_caf }}</td>
-                    <td>{{ $farmaceutico->distancia_referencia_modulo }}</td>
-                    <td>{{ $farmaceutico->funcionarios_responsaveis }}</td>
+                    <td>{{ $farmaceutico->pessoas->nome }}</td>
+                    <td>{{ $farmaceutico->pessoas->cpf }}</td>
+                    <td>{{ $farmaceutico->crf }}</td>
+                    <td>{{ $farmaceutico->pessoas->telefone }}</td>
                     <td>{{ $farmaceutico->ativo }}</td>
                     <td>
                         <a href="#" class="btn btn-sm btn-primary">Editar</a>
@@ -46,7 +39,7 @@
             @endforeach
         </tbody>
     </table>
-@endsection
+
 @endsection
 
 @section('footer')

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-layout')
 
 @section('sidebar')
 
@@ -21,12 +21,12 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($consumoItens as $consumoItem)
+            @foreach($consumos_itens as $consumo_item)
                 <tr>
-                    <td>{{ $consumoItem->medicamento->nome }}</td>
-                    <td>{{ $consumoItem->consumo->nome }}</td>
-                    <td>{{ $consumoItem->quantidade }}</td>
-                    <td>{{ $consumoItem->user->name }}</td>
+                    <td>{{ $consumo_item->medicamento->nome }}</td>
+                    <td>{{ $consumo_item->consumo->nome }}</td>
+                    <td>{{ $consumo_item->quantidade }}</td>
+                    <td>{{ $consumo_item->user->name }}</td>
                     <td>
                         <a href="{{ route('consumo_itens.show', $consumoItem->id) }}" class="btn btn-primary">Ver</a>
                         <a href="{{ route('consumo_itens.edit', $consumoItem->id) }}" class="btn btn-warning">Editar</a>

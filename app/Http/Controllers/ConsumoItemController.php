@@ -15,8 +15,8 @@ class ConsumoItemController extends Controller
      */
     public function index()
     {
-       $consumoItens = Consumos_itens::all();
-       return view('consumo_itens.index', compact('consumoItens'));
+       $consumos_itens = Consumos_itens::all();
+       return view('consumos_itens.index', compact('consumos_itens'));
     }
 
     /**

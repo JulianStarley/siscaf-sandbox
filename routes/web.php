@@ -101,3 +101,4 @@ Route::group(['prefix' => 'consumo-itens'], function (){
 Route::get('/testescalculos', function(){
     return view('testescalculos');
 })->name('testescalculos');
+require __DIR__.'/auth.php';
