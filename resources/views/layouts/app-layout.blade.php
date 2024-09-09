@@ -6,6 +6,7 @@
     <title>Basic Layout</title>
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
       body, html {
@@ -23,13 +24,17 @@
       .dropdown-menu:not(.show) {
         opacity: 0;
       }
+      .nav-link{
+        margin-left:16px;
+        margin-top: 8px;
+      }
     </style>
 </head>
 <body>
     <div class="container-fluid h-100">
         <div class="row h-100">
             <!-- Sidebar -->
-            <div class="p-0 col-sm-3 bg-success h-100">
+            <div class="col-lg-3 bg-success h-100">
                 <div class="d-flex flex-column h-100">
                     <ul class="nav flex-column">
                         <li class="nav-item dropdown">

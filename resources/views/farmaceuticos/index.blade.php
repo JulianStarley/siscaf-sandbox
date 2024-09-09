@@ -10,7 +10,7 @@
 
 @section('content')
     <h1>Farmaceutico</h1>
-
+    <a href="{{ route('farmaceuticos.create') }}" class="btn btn-primary">Novo farmaceutico</a>
     <table class="table table-striped">
         <thead>
             <tr>

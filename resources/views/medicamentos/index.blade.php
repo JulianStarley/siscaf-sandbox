@@ -9,8 +9,8 @@
 @endsection
 
 @section('content')
-
-    <h1>Medicamentos</h1>
+<h1>Medicamentos</h1>
+<a href="{{ route('medicamentos.create') }}" class="btn btn-primary">Novo medicamento</a>
     <table class="table table-striped">
         <thead>
             <tr>

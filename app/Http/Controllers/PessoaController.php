@@ -101,4 +101,15 @@ class PessoaController extends Controller
         $pessoa->delete();
         return redirect()->route('pessoas.index')->with('success', 'Pessoa excluída com sucesso');
     }
+
+    public function search(Request $request)
+{
+    $search = $request->input('search');
+    $pessoas = Pessoa::where('nome', 'like', '%' . $search . '%')
+        ->orWhere('cpf', 'like', '%' . $search . '%')
+        ->orWhere('telefone', 'like', '%' . $search . '%')
+        ->orWhere('tipo_pessoa', 'like', '%' . $search . '%')
+        ->get();
+    return response()->json($pessoas);
+}
 }

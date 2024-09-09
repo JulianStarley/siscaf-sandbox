@@ -10,6 +10,7 @@
 
 @section('content')
     <h1>Solicitações</h1>
+    <a href="{{ route('solicitacoes.create') }}" class="btn btn-primary">Abrir solicitação</a>
     <table class="table table-striped">
         <thead>
             <tr>

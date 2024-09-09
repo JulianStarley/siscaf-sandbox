@@ -15,8 +15,8 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Unidade</th>
                 <th>Data</th>
+                <th>Unidade</th>
                 <th>Usuário</th>
                 <th>Ações</th>
             </tr>
@@ -25,8 +25,8 @@
             @foreach($consumos as $consumo)
                 <tr>
                     <td>{{ $consumo->id }}</td>
-                    <td>{{ $consumo->unidade->nome }}</td>
                     <td>{{ $consumo->data }}</td>
+                    <td>{{ $consumo->unidade->nome }}</td>
                     <td>{{ $consumo->user->name }}</td>
                     <td>
                         <a href="{{ route('consumos.show', $consumo->id) }}" class="btn btn-info">Visualizar</a>
@@ -40,7 +40,7 @@
                 </tr>
             @endforeach
 
-        @include('consumos_itens.index')
+
         </tbody>
     </table>
 

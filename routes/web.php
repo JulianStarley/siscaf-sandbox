@@ -56,6 +56,7 @@ Route::group(['prefix' => 'pessoas'], function(){
     Route::get('/{id}/edit', '\App\Http\Controllers\PessoaController@edit')->name('pessoas.edit');
     Route::put('/{id}', '\App\Http\Controllers\PessoaController@update')->name('pessoas.update');
     Route::delete('/{id}/delete', '\App\Http\Controllers\PessoaController@delete')->name('pessoas.delete');
+    Route::get('/search', '\App\Http\Controllers\PessoaController@search')->name('pessoas.search');
 });
 
 Route::group(['prefix' => 'solicitacoes'], function (){
