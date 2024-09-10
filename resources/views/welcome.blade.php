@@ -1,10 +1,5 @@
 @extends('layouts.app-layout')
 
-@section('sidebar')
-    <!-- Sidebar content here -->
-    <h2>sidebar</h2>
-
-@endsection
 
 @section('header')
     <!-- Header content here -->

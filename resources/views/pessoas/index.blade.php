@@ -13,9 +13,7 @@
     <h1>Pessoas</h1>
     <div class="mb-3 row">
         <div class="col-lg-9">
-            <button class="btn btn-primary btn-lg">
-                <a href="{{ route('pessoas.create') }}" class="text-white">Criar pessoa</a>
-            </button>
+            <a href="{{ route('pessoas.create') }}" class="text-white btn btn-primary btn-lg">Criar pessoa</a>
         </div>
         <div class="col-lg-3">
             <div class="input-group input-group-lg">

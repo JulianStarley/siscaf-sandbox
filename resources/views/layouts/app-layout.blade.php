@@ -2,141 +2,150 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-    <title>Basic Layout</title>
-    <!-- Latest compiled and minified CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <style>
-      body, html {
-        height: 100%;
-        margin: 0;
-      }
-      .dropdown-menu {
-        transition: opacity 1.0s ease-in-out;
-      }
-
-      .dropdown-menu.show {
-        opacity: 1;
-      }
-
-      .dropdown-menu:not(.show) {
-        opacity: 0;
-      }
-      .nav-link{
-        margin-left:16px;
-        margin-top: 8px;
-      }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px; /* Espaçamento externo de 16px */
+        }
+        .header, .footer {
+            padding: 16px;
+            background-color: #f0f0f0;
+        }
+        .sidebar {
+            padding: 16px;
+            background-color: #f5f5f5;
+        }
+        .content {
+            padding: 16px;
+        }
     </style>
 </head>
 <body>
-    <div class="container-fluid h-100">
-        <div class="row h-100">
-            <!-- Sidebar -->
-            <div class="col-lg-3 bg-success h-100">
-                <div class="d-flex flex-column h-100">
-                    <ul class="nav flex-column">
-                        <li class="nav-item dropdown">
-                            <a href="#" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover dropdown-toggle" id="dashboard-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dashboard Gerencial
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="dashboard-dropdown">
-                                <li><a href="{{ route('dashboardGerencial') }}" class="dropdown-item">Dashboard Gerencial</a></li>
-                            </ul>
-                        </li>
+    <header class="header">
+        <h1>Meu Aplicativo</h1>
+        <nav>
+            </nav>
+        @yield('header')
+    </header>
 
-                        <li class="nav-item dropdown">
-                            <a href="#" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover dropdown-toggle" id="pessoas-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                Pessoas
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="pessoas-dropdown">
-                                <li><a href="{{ route('pessoas.index') }}" class="dropdown-item">Listar Pessoas</a></li>
-                                <li><a href="{{ route('pessoas.create') }}" class="dropdown-item">Incluir Pessoas</a></li>
-                            </ul>
-                        </li>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 sidebar">
+                <button class="btn btn-primary d-flex align-items-center justify-content-center" data-bs-toggle="offcanvas" data-bs-target="#sidebar-offcanvas" aria-controls="sidebar-offcanvas">
+                    <i class="text-white bi bi-list fs-2"></i>
+                    <span class="ms-2">Menu</span>
+                </button>
 
-                        <li class="nav-item dropdown">
-                            <a href="#" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover dropdown-toggle" id="med-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                Medicamentos
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="med-dropdown">
-                                <li><a href="{{ route('medicamentos.index') }}" class="dropdown-item">Listar Medicamentos</a></li>
-                                <li><a href="{{ route('medicamentos.create') }}" class="dropdown-item">Incluir Medicamentos</a></li>
-                            </ul>
-                        </li>
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar-offcanvas" aria-labelledby="sidebar-offcanvas-label">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="sidebar-offcanvas-label">Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <nav>
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{{ route('dashboardGerencial') }}"><i class="bi bi-graph-up-arrow"></i>Dashboard</a>
+                                </li>
 
-                        <li class="nav-item dropdown">
-                            <a href="#" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover dropdown-toggle" id="farm-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                Farmaceuticos
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="farm-dropdown">
-                                <li><a href="{{ route('farmaceuticos.index') }}" class="dropdown-item">Listar</a></li>
-                                <li><a href="{{ route('farmaceuticos.create') }}" class="dropdown-item">Incluir</a></li>
-                            </ul>
-                        </li>
 
-                        <li class="nav-item dropdown">
-                            <a href="#" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover dropdown-toggle" id="unid-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                Unidades
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="unid-dropdown">
-                                <li><a href="{{ route('unidades.index') }}" class="dropdown-item">Listar</a></li>
-                                <li><a href="{{ route('unidades.create') }}" class="dropdown-item">Incluir</a></li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link-active" id="pessoas-dropdown" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false">
+                                        <i class="bi bi-person"></i>Pessoas
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="pessoas-dropdown">
+                                        <li><a href="{{ route('pessoas.index') }}" class="dropdown-item">Listar Pessoas</a></li>
+                                        <li><a href="{{ route('pessoas.create') }}" class="dropdown-item">Incluir Pessoas</a></li>
+                                    </ul>
+                                </li>
                             </ul>
-                        </li>
 
-                        <li class="nav-item dropdown">
-                            <a href="#" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover dropdown-toggle" id="solicitacoes-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                Solicitações
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="solicitacoes-dropdown">
-                                <li><a href="{{ route('solicitacoes.index') }}" class="dropdown-item">Listar</a></li>
-                                <li><a href="{{ route('solicitacoes.create') }}" class="dropdown-item">Incluir</a></li>
+                                <li class="nav-item dropdown">
+                                    <a href="#" class="nav-link active" id="med-dropdown" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false">
+                                        <i class="bi bi-capsule"></i>Medicamentos
+                                    </a>
+
+                                        <li class="dropdown-menu" aria-labelledby="med-dropdown"><a href="{{ route('medicamentos.index') }}" class="dropdown-item">Listar Medicamentos</a></li>
+                                        <li class="dropdown-menu" aria-labelledby="med-dropdown"><a href="{{ route('medicamentos.create') }}" class="dropdown-item">Incluir Medicamentos</a></li>
+
+                                </li>
+
+
+                                <li class="nav-item dropdown">
+                                    <a href="#" class="navi-link active" id="farm-dropdown" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false">
+                                        <i class="bi bi-prescription"></i>  Farmaceuticos
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="farm-dropdown">
+                                        <li><a href="{{ route('farmaceuticos.index') }}" class="dropdown-item">Listar Farmaceuticos</a></li>
+                                        <li><a href="{{ route('farmaceuticos.create') }}" class="dropdown-item">Incluir Farmaceuticos</a></li>
+                                </ul>
+                            </li>
+
+
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link active" id="unid-dropdown" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false">
+                                    <i class="bi bi-building"></i>   Unidades
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="unid-dropdown">
+                                    <li><a href="{{ route('unidades.index') }}" class="dropdown-item">Listar Unidades</a></li>
+                                    <li><a href="{{ route('unidades.create') }}" class="dropdown-item">Incluir Unidades</a></li>
+                                </ul>
+
+
+                                <li class="nav-item dropdown">
+                                    <a href="#" class="nav-link active" id="solicitacoes-dropdown" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false">
+                                        <i class="bi bi-box-arrow-in-down"></i>  Solicitações
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="solicitacoes-dropdown">
+                                        <li><a href="{{ route('solicitacoes.index') }}" class="dropdown-item">Listar Solicitações</a></li>
+                                        <li><a href="{{ route('solicitacoes.create') }}" class="dropdown-item">Incluir Solicitações</a></li>
+                                    </ul>
+
+
+                                    <li class="nav-item dropdown">
+                                        <a href="#" class="nav-link active" id="consumos-dropdown" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false">
+                                            <i class="bi bi-box-arrow-down"></i>Consumos
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="consumos-dropdown">
+                                    <li><a href="{{ route('consumos.index') }}" class="dropdown-item">Listar Consumos</a></li>
+                                    <li><a href="{{ route('consumos.create') }}" class="dropdown-item">Incluir Consumos</a></li>
+                                </ul>
                             </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a href="#" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover dropdown-toggle" id="consumos-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                Consumos
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="consumos-dropdown">
-                                <li><a href="{{ route('consumos.index') }}" class="dropdown-item">Listar</a></li>
-                                <li><a href="{{ route('consumos.create') }}" class="dropdown-item">Incluir</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="{{ route('solicitacoes.create') }}" class="link-dark link-underline-opacity-0 link-underline-opacity-75-hover">Abrir Solicitação</a>
-                        </li>
-                    </ul>
-                    @yield('sidebar')
+                    </nav>
+                    <style>
+                        .nav {
+                          list-style: none;
+                          padding: 0;
+                        }
+                        .nav-item {
+                          display: flex;
+                          align-items: center;
+                        }
+                        .submenu {
+                          list-style: none;
+                          padding-left: 1rem;
+                        }
+                      </style>
+                    </div>
                 </div>
             </div>
-            <!-- Main Content -->
-            <div class="p-0 col-sm-9 h-100">
-                <!-- Header -->
-                <div class="row bg-warning" style="height: 10vh;">
-                    <div class="col-12 d-flex align-items-center h-100">
-                        @yield('header')
-                    </div>
-                </div>
-                <!-- Content Area -->
-                <div class="row h-100">
-                    <div class="p-0 overflow-auto col-12 bg-light h-100">
-                        <div class="h-100">
-                            @yield('content')
-                        </div>
-                    </div>
-                </div>
-                <!-- Footer -->
-                <div class="row bg-light" style="height: 10vh;">
-                    <div class="col-12 d-flex align-items-center h-100">
-                        @2024 Desenvolvido pelo departamento de tecnologia
-                    </div>
-                </div>
+
+            <div class="col-md-9 content">
+                @yield('content')
             </div>
         </div>
     </div>
+
+    <footer class="footer">
+        <p>&copy; 2023 Todos os direitos reservados.</p>
+    @yield('footer')
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
