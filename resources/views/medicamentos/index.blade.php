@@ -9,6 +9,10 @@
 @endsection
 
 @section('content')
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('/') }}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Listar Medicamentos</li>
+@endsection
 <h1>Medicamentos</h1>
 <a href="{{ route('medicamentos.create') }}" class="btn btn-primary">Novo medicamento</a>
     <table class="table table-striped">

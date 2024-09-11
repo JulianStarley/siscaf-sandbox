@@ -11,9 +11,10 @@
 @endsection
 
 @section('content')
-
-
-
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('/') }}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Criar Pessoas</li>
+@endsection
     <h1>Criar pessoa</h1>
     <form action="{{ route('pessoas.store') }}" method="post">
         @csrf

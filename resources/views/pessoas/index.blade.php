@@ -1,15 +1,15 @@
 @extends('layouts.app-layout')
 
-@section('sidebar')
-
-@endsection
-
 @section('header')
     <!-- Header content here -->
     header
 @endsection
 
 @section('content')
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('/') }}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Listar Pessoas</li>
+@endsection
     <h1>Pessoas</h1>
     <div class="mb-3 row">
         <div class="col-lg-9">
@@ -41,11 +41,11 @@
                         <td>{{ $pessoa->telefone }}</td>
                         <td>{{ $pessoa->tipo_pessoa }}</td>
                         <td>
-                            <a href="{{ route('pessoas.edit', $pessoa->id) }}" class="btn btn-primary">Editar</a>
-                            <form action="{{ route('pessoas.delete', $pessoa->id) }}" method="post">
+                            <a href="{{ route('pessoas.edit', $pessoa->id) }}" class="btn btn-primary"><i class="bi bi-pencil-square"></i>Editar</a>
+                            <form action="{{ route('pessoas.delete', $pessoa->id) }}" id="delete-form" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Excluir</button>
+                                <button type="submit" class="btn btn-danger d-flex align-items-center"><i class="bi bi-trash"></i>Excluir</button>
                             </form>
                         </td>
                     </tr>

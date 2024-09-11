@@ -1,14 +1,14 @@
 @extends('layouts.app-layout')
 
-@section('sidebar')
-
-@endsection
-
 @section('header')
 
 @endsection
 
 @section('content')
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('/') }}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Alterar Solicitação</li>
+@endsection
     <h1>Editar Solicitação #{{ $solicitacao->id }}</h1>
     <form action="{{ route('solicitacoes.update', $solicitacao->id) }}" method="POST">
         @csrf

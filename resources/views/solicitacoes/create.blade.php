@@ -1,14 +1,15 @@
 @extends('layouts.app-layout')
 
-@section('sidebar')
-
-@endsection
 
 @section('header')
 
 @endsection
 
 @section('content')
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('/') }}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Criar Solicitação</li>
+@endsection
     <h1>Criar Solicitação</h1>
     <form action="{{ route('solicitacoes.store') }}" method="POST">
         @csrf

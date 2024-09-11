@@ -1,14 +1,15 @@
 @extends('layouts.app-layout')
 
-@section('sidebar')
-
-@endsection
 
 @section('header')
 
 @endsection
 
 @section('content')
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('/') }}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Listar Solicitação (show unitário -toast ou modal)</li>
+@endsection
     <h1>Solicitação #{{ $solicitacao->id }}</h1>
     <p>Unidade: {{ $solicitacao->unidade->nome }}</p>
     <p>Farmacêutico: {{ $solicitacao->farmaceutico->nome }}</p>

@@ -1,14 +1,15 @@
 @extends('layouts.app-layout')
 
-@section('sidebar')
-
-@endsection
 
 @section('header')
 
 @endsection
 
 @section('content')
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('/') }}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Listar Solicitações</li>
+@endsection
     <h1>Solicitações</h1>
     <a href="{{ route('solicitacoes.create') }}" class="btn btn-primary">Abrir solicitação</a>
     <table class="table table-striped">

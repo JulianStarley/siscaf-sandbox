@@ -80,6 +80,10 @@
     <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 </head>
 @section('content')
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('/') }}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+@endsection
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-4">

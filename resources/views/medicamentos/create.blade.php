@@ -1,15 +1,15 @@
 @extends('layouts.app-layout')
 
-@section('sidebar')
-
-@endsection
-
 @section('header')
 
 @endsection
 
 @section('title', 'Novo medicamento')
 @section('content')
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('/') }}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Criar Medicamento</li>
+@endsection
 <form method="POST" action="{{ route('medicamentos.store') }}">
     @csrf
 

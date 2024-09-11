@@ -1,14 +1,15 @@
 @extends('layouts.app-layout')
 
-@section('sidebar')
-
-@endsection
 
 @section('header')
 
 @endsection
 
 @section('content')
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('/') }}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Alterar Itens Solicitados</li>
+@endsection
 <h1>Editar Solicitação de Item</h1>
 <form action="{{ route('solicitacao-itens.update', $solicitacaoItem->id) }}" method="POST">
     @csrf
