@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Consumos;
 use App\Models\Consumos_itens;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class ConsumoItemController extends Controller
 {
@@ -111,5 +113,36 @@ class ConsumoItemController extends Controller
         $consumoItem = Consumos_itens::find($id);
         $consumoItem->delete();
         return redirect()->route('consumo_itens.index')->with('success', 'consumo excluido com sucesso');
+    }
+
+    public function postLogin(Request $request)
+    {
+        $credentials = $request->only(['email', 'password']);
+
+        if (Auth::attempt($credentials))
+        {
+            return redirect()->route('consumo_itens.index')->with('success', 'Login successfull');
+        }
+        return redirect()->back()->with('error', 'Invalid credentials');
+    }
+
+    public function register()
+    {
+        return view('auth.register');
+    }
+
+    public function postRegister(Request $request)
+    {
+        $validatedData = $request->validate(
+            [
+                'name' => 'required|string',
+                'email' =>'required|string|unique:users',
+                'password' => 'required|string|confirmed',
+            ]
+            );
+            $user = new User();
+            $user->name = $validatedData['name'];
+            $user->email = $validatedData['email'];
+            $user->password = $validatedData['password'];
     }
 }

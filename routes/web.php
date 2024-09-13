@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('/');
 
+Route::get('/login', 'ConsumoItemController@login')->name('login');
+Route::post('/login', 'ConsumoItemController@postLogin')->name('postLogin');
+Route::get('/register', 'ConsumoItemController@register')->name('register');
+Route::post('/register', 'ConsumoItemController@postRegister')->name('postRegister');
+
 Route::get('/dashboardGerencial', function(){
     return view ('dashboardGerencial');
 })->name('dashboardGerencial');
