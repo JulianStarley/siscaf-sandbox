@@ -86,36 +86,48 @@
 @endsection
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body" >
-
-                        <h5 class="card-title">Solicitações em aberto</h5>
-
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body" >
+                            <h5 class="card-title">Solicitações em aberto</h5>
+                                <div class="circle">
+                                    <span class="value">0</span>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Proximidade de vencimento</h5>
                             <div class="circle">
                                 <span class="value">0</span>
                             </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Solicitações em aberto</h5>
+                            <div class="circle">
+                                <span class="value">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Card 2</h5>
-                        <p class="card-text">Proximidade de vencimento</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Card 3</h5>
-                        <p class="card-text">transferencias em aberto</p>
+                        <h5 class="card-title">Solicitações em transferência</h5>
+                        <div class="circle">
+                            <span class="value">0</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="mt-5 row">
             <div class="col-md-6">
                 <canvas id="chart1"></canvas>
