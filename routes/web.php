@@ -108,3 +108,8 @@ Route::get('/testescalculos', function(){
     return view('testescalculos');
 })->name('testescalculos');
 require __DIR__.'/auth.php';
+
+Route::get('/transferencias', function()
+{
+    return view('transferencias');
+})->name('transferencias');

@@ -9,10 +9,8 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
-    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
-
     <!-- Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
     .card-body {
         display: flex;
@@ -20,114 +18,81 @@
         justify-content: space-between;
     }
 
-    .circle {
-        width: 35px;
-        height: 35px;
-        border-radius: 90%;
-        background-color: #e20a0a;
-    }
-      .value {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 1em;
-        color: #f5ecec;
-      }
+    .badge {
+            display: inline-block;
+            padding: 0.25em 0.5em;
+            font-size: 1em;
+            font-weight: bold;
+            line-height: 1;
+            color: #f5ecec;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 0.25rem;
+            background-color: #e20a0a;
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+        }
+
+        .badge span {
+            font-size: 1.5em;
+            font-weight: bold;
+            line-height: 1;
+            display: block;
+            margin-top: 0.4em;  /*aumentar aqui caso queira aumentar espaçamento superior do badge*/
+            margin-bottom: 0.4em; /*aumentar aqui caso queira aumentar espaçamento inferior do badge*/
+        }
+
       </style>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap 4 -->
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-
-    <!-- Ajax -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- DataTable -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
-    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.flash.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js"></script>
-
-    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
-
-    <!-- Icones -->
-    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 @section('content')
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ route('/') }}">Home</a></li>
     <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
 @endsection
-    <div class="container mt-5">
-        <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body" >
-                            <h5 class="card-title">Solicitações em aberto</h5>
-                                <div class="circle">
-                                    <span class="value">0</span>
-                                </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Proximidade de vencimento</h5>
-                            <div class="circle">
-                                <span class="value">0</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Solicitações em aberto</h5>
-                            <div class="circle">
-                                <span class="value">0</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Solicitações em transferência</h5>
-                        <div class="circle">
-                            <span class="value">0</span>
-                        </div>
-                    </div>
+<div class="container mt-5">
+    <div class="row">
+        <div class="mb-4 col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Solicitações em aberto</h5>
+                    <span class="badge" id="badge-1"><span>0</span></span>
                 </div>
             </div>
         </div>
+        <div class="mb-4 col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Proximidade de vencimento</h5>
+                    <span class="badge" id="badge-2"><span>0</span></span>
+                </div>
+            </div>
+        </div>
+        <div class="mb-4 col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Solicitações em aberto</h5>
+                    <span class="badge" id="badge-3"><span>0</span></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-4 col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Solicitações em transferência</h5>
+                    <span class="badge" id="badge-4"><span>0</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
         <div class="mt-5 row">
             <div class="col-md-6">
                 <canvas id="chart1"></canvas>
@@ -228,25 +193,19 @@
 
 
 <script>
-const circle = document.querySelector('.circle'); //seletor de css
-const value = document.querySelector('.value');
+    const badges = document.querySelectorAll('.badge span');
+    const maxCount = 100;
 
-let count = 0;
-let maxCount = 100; //aqui vai a conexão com banco e resultado de solicitacoes em aberto
-
-function animateCount() { //animacao de rotacao e contagem de valores
-  count++;
-  value.textContent = count;
-
-  // Calculo o ângulo de rotação
-  const rotation = (count / maxCount) * 0;
-  circle.style.transform = `rotate(${rotation}deg)`;
-
-  if (count < maxCount) {
-    requestAnimationFrame(animateCount);
-  }
-}
-
-animateCount();
+    badges.forEach((badge, index) => {
+        let count = 0;
+        const animation = () => {
+            count++;
+            badge.textContent = count;
+            if (count < maxCount) {
+                requestAnimationFrame(animation);
+            }
+        };
+        animation();
+    });
 </script>
 @endsection

@@ -4,13 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+
+    <!-- Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    .card-body {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .badge {
+            display: inline-block;
+            padding: 0.25em 0.5em;
+            font-size: 1em;
+            font-weight: bold;
+            line-height: 1;
+            color: #f5ecec;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 0.4rem;
+            background-color: #e20a0a;
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+        }
+
+        .badge span {
+            font-size: 1.5em;
+            font-weight: bold;
+            line-height: 1;
+            display: block;
+            margin-top: 0.25em;  /*aumentar aqui caso queira aumentar espaçamento superior do badge*/
+            margin-bottom: 0.25em; /*aumentar aqui caso queira aumentar espaçamento inferior do badge*/
+        }
+
+      </style>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <style>
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 16px; /* Espaçamento por fora de 16px */
+            max-width: 1300px;
+            margin-left: 16px;
+            margin-right: 16px;
+            padding: 8px; /* Espaçamento por fora de 16px */
         }
         .header, .footer {
             padding: 16px;
@@ -41,7 +85,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
                     <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#sidebar-offcanvas" aria-controls="sidebar-offcanvas">
                         <i class="bi bi-list"></i> Menu
                     </button>
@@ -141,7 +185,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9 content">
+            <div class="col-md-10 content">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         @yield('breadcrumb')
