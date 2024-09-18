@@ -9,6 +9,10 @@
 
     <!-- Styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <style>
     .card-body {
         display: flex;
@@ -78,7 +82,7 @@
 <body>
     <header class="header">
         <h1>SYSCAF SANDBOX</h1>
-        <nav>
+            <nav>
             </nav>
         @yield('header')
     </header>
@@ -156,7 +160,15 @@
                                     <ul class="dropdown-menu" aria-labelledby="consumos-dropdown">
                                         <li><a href="{{ route('consumos.index') }}" class="dropdown-item">Listar Consumos</a></li>
                                         <li><a href="{{ route('consumos.create') }}" class="dropdown-item">Incluir Consumos</a></li>
-                                    </li>
+                                    </ul>
+                                        <li class="nav-item dropdown">
+                                            <a href="#" class="nav-link active" id="transferencias-dropdown" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false">
+                                                <i class="bi bi-arrow-left-right"></i>Transferências
+                                            </a>
+                                    <ul class="dropdown-menu" aria-labelledby="tranferencias-dropdown">
+                                        <li><a href="{{ route('transferencias') }}" class="dropdown-item">Listar Transferências</a></li>
+                                        </li>
+                                    </ul>
                                 </ul>
                             </ul>
                     </nav>
