@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,12 +80,24 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <h1>SYSCAF SANDBOX</h1>
-            <nav>
-            </nav>
-        @yield('header')
-    </header>
+<header class="header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1 class="display-4">SYSCAF SANDBOX</h1>
+            </div>
+                <div class="col-md-6 text-end">
+                    <div id="diaDaSemana" class="mb-0"></div>
+                    <div id="date1" class="mb-0"></div>
+                    <div id="time1" class="mb-0"></div>
+                        <nav>
+                            <i class="bi bi-person-circle"></i>
+                        </nav>
+                            @yield('header')
+                </div>
+        </div>
+    </div>
+|</header>
 
     <div class="container">
         <div class="row">
@@ -212,7 +224,37 @@
         <p>&copy; 2024 Todos os direitos reservados.</p>
     @yield('footer')
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function updateDateTime(){
+            //dias da semana
+            const now = new Date();
+            const daysOfWeek = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+            const daysofWeek = now.getDay();
+
+            //Data da semana
+            const day = String(now.getDate()).padStart(2,0);
+            const month = String(now.getMonth() + 1).padStart(2,0);
+            const year = now.getFullYear();
+            const date =  `${day}-${month}-${year}`;
+
+
+            //Hora do dia
+            const hours = String(now.getHours()).padStart(2,0);
+            const minutes = String(now.getMinutes()).padStart(2,0);
+            const seconds = String(now.getSeconds()).padStart(2,0);
+            const time = `${hours}:${minutes}:${seconds}`;
+
+            //apontar e atualizar elementos
+            document.getElementById('diaDaSemana').textContent = daysOfWeek[daysofWeek];
+            document.getElementById('date1').textContent = date;
+            document.getElementById('time1').textContent = time;
+        }
+
+        setInterval(updateDateTime, 1000);
+
+        updateDateTime();
+    </script>
 </body>
 </html>
