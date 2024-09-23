@@ -14,7 +14,18 @@
     <li class="breadcrumb-item active" aria-current="page">Listar Medicamentos</li>
 @endsection
 <h1>Medicamentos</h1>
-<a href="{{ route('medicamentos.create') }}" class="btn btn-primary">Novo medicamento</a>
+    <div class="mb-3 row">
+        <div class="col-md-9">
+            <a type="button" class="btn btn-secondary btn-lg" href="javascript:history.back()">Voltar</a>
+            <a href="{{ route('medicamentos.create') }}" class="btn btn-primary btn-lg">Novo medicamento</a>
+        </div>
+        <div class="col-lg-3">
+            <div class="input-group input-group-lg">
+                <input type="text" id="search" class="form-control" placeholder="Buscar..." onkeyup="filterTable()">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+            </div>
+        </div>
+    </div>
     <table class="table table-striped">
         <thead>
             <tr>

@@ -22,17 +22,16 @@ class Pessoa extends Model
         'telefone',
         'observacao',
         'user_id',
-        'tipo_pessoa',
+        'tipo_pessoa_id',
         'users_id',
     ];
-
-    protected $enumTipoPessoa = [
-        'farmaceutico',
-        'unidade'
-    ];
-
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function tipoPessoa()
+    {
+        return $this->belongsTo(TipoPessoa::class);
     }
 }

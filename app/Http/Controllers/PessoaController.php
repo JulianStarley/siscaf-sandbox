@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pessoa;
+use App\Models\TipoPessoa;
 use Illuminate\Http\Request;
 
 class PessoaController extends Controller
@@ -67,7 +68,8 @@ class PessoaController extends Controller
     public function edit($id)
     {
         $pessoa = Pessoa::find($id);
-        return view('pessoas.edit', compact('pessoa'));
+        $tipoPessoas = TipoPessoa::all();
+        return view('pessoas.edit', compact('pessoa', 'tipoPessoas'));
     }
 
     /**
@@ -84,7 +86,7 @@ class PessoaController extends Controller
         $pessoa->cpf = $request->input('cpf');
         $pessoa->telefone = $request->input('telefone');
         $pessoa->observacao = $request->input('observacao');
-        $pessoa->tipo_pessoa = $request->input('tipo_pessoa');
+        $pessoa->tipo_pessoa_id = $request->input('tipo_pessoa_id');
         $pessoa->save();
         return redirect()->route('pessoas.index')->with('success', 'Pessoa atualizada com sucesso');
     }

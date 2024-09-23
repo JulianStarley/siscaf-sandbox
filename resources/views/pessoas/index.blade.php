@@ -11,8 +11,10 @@
     <li class="breadcrumb-item active" aria-current="page">Listar Pessoas</li>
 @endsection
     <h1>Pessoas</h1>
+
     <div class="mb-3 row">
         <div class="col-lg-9">
+            <a type="button" class="btn btn-secondary btn-lg" href="javascript:history.back()">Voltar</a>
             <a href="{{ route('pessoas.create') }}" class="text-white btn btn-primary btn-lg">Criar pessoa</a>
         </div>
         <div class="col-lg-3">
@@ -39,13 +41,13 @@
                         <td>{{ $pessoa->nome }}</td>
                         <td>{{ $pessoa->cpf }}</td>
                         <td>{{ $pessoa->telefone }}</td>
-                        <td>{{ $pessoa->tipo_pessoa }}</td>
+                        <td>{{ $pessoa->tipoPessoa->tipo_pessoa }}</td>
                         <td>
-                            <a href="{{ route('pessoas.edit', $pessoa->id) }}" class="btn btn-primary"><i class="bi bi-pencil-square"></i>Editar</a>
+                            <a href="{{ route('pessoas.edit', $pessoa->id) }}" class="mb-3 btn btn-primary"><i class="bi bi-pencil-square"></i> Editar</a>
                             <form action="{{ route('pessoas.delete', $pessoa->id) }}" id="delete-form" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger d-flex align-items-center"><i class="bi bi-trash"></i>Excluir</button>
+                                <button type="submit" class="btn btn-danger d-flex align-items-center"><i class="bi bi-trash"></i> Excluir</button>
                             </form>
                         </td>
                     </tr>
