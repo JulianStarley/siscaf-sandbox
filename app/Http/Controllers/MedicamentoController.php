@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Estoques;
 use App\Models\Medicamentos;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MedicamentoController extends Controller
@@ -28,6 +30,14 @@ class MedicamentoController extends Controller
         return view('medicamentos.create');
     }
 
+    public function med_include()
+    {
+        $medicamentos = Medicamentos::all();
+        $estoque = Estoques::all();
+        $users = User::all();
+        return view('medicamentos.include', compact('estoque', 'users', 'medicamentos'));
+
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -41,16 +51,17 @@ class MedicamentoController extends Controller
     $medicamento->medicamento = $request->input('medicamento');
     $medicamento->codigo = $request->input('codigo');
     $medicamento->ativo = $request->input('ativo');
-    $medicamento->quantidade = $request->input('quantidade');
-    $medicamento->validade = $request->input('validade');
-    $medicamento->lote = $request->input('lote');
-    $medicamento->cod_barras = $request->input('cod_barras');
-    $medicamento->fator_embalagem = $request->input('fator_embalagem');
+    $medicamento->estoque->quantidade = $request->input('quantidade');
+    $medicamento->estoque->validade = $request->input('validade');
+    $medicamento->estoque->lote = $request->input('lote');
+    $medicamento->estoque->cod_barras = $request->input('cod_barras');
+    $medicamento->estoque->fator_embalagem = $request->input('fator_embalagem');
     $medicamento->observacao = $request->input('observacao');
     $medicamento->user_id = $request->input('user_id');
     $medicamento->save();
 
    return redirect()->route('medicamentos.index')->with('success', 'Dados  do medicamento cadastrados com sucesso!');
+
     }
 
     /**

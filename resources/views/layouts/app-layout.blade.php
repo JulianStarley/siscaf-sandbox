@@ -53,6 +53,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
     <style>
         .container {
             max-width: 1300px;
@@ -128,12 +130,13 @@
 
 
                                 <li class="nav-item dropdown">
-                                    <a href="#" class="nav-link active" id="med-dropdown" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false">
+                                    <a href="#" onClick="eventPreventDefault(); document.getElementById('incluir-estoque-form').submit()" class="nav-link active" id="med-dropdown" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false">
                                         <i class="bi bi-capsule"></i>Medicamentos
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="med-dropdown">
-                                        <li><a href="{{ route('medicamentos.index') }}" class="dropdown-item">Listar Medicamentos</a></li>
-                                        <li><a href="{{ route('medicamentos.create') }}" class="dropdown-item">Incluir Medicamentos</a></li>
+                                        <li><a href="{{ route('medicamentos.index') }}" class="dropdown-item">Listar medicamentos</a></li>
+                                        <li><a href="{{ route('medicamentos.create') }}" class="dropdown-item">Novo medicamentos</a></li>
+                                        <li><a href="{{ route('medicamentos.include') }}" class="dropdown-item">Incluir estoque</a></li>
                                     </ul>
                                 </li>
 
@@ -147,8 +150,6 @@
                                         <li><a href="{{ route('farmaceuticos.create') }}" class="dropdown-item">Incluir Farmaceuticos</a></li>
                                     </ul>
                             </li>
-
-
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link active" id="unid-dropdown" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false">
                                     <i class="bi bi-building"></i>Unidades

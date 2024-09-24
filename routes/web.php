@@ -31,6 +31,7 @@ Route::group(['prefix' => 'medicamentos'], function() {
     Route::get('/{id}/show', '\App\Http\Controllers\MedicamentoController@show')->name('medicamentos.show');
     Route::get('/create', '\App\Http\Controllers\MedicamentoController@create')->name('medicamentos.create');
     Route::post('/store', '\App\Http\Controllers\MedicamentoController@store')->name('medicamentos.store');
+    Route::get('/include', '\App\Http\Controllers\MedicamentoController@med_include')->name('medicamentos.include');
     Route::get('/{id}/edit', '\App\Http\Controllers\MedicamentoController@edit')->name('medicamentos.edit');
     Route::put('/{id}/update', '\App\Http\Controllers\MedicamentoController@update')->name('medicamentos.update');
     Route::delete('/{id}/delete', '\App\Http\Controllers\MedicamentoController@delete')->name('medicamentos.delete');

@@ -21,12 +21,12 @@ class Medicamentos extends Model
         'medicamento',
         'codigo',
         'ativo',
-        'quantidade',
-        'validade',
-        'lote',
-        'cod_barras',
-        'fator_embalagem',
         '[observacao]',
-        'user_id'
+        'user_id',
      ];
+
+     public function estoque()
+     {
+        return $this->belongsTo(Estoques::class);
+     }
 }
