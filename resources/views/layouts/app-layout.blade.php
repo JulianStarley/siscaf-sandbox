@@ -157,6 +157,7 @@
                                 <ul class="dropdown-menu" aria-labelledby="unid-dropdown">
                                     <li><a href="{{ route('unidades.index') }}" class="dropdown-item">Listar Unidades</a></li>
                                     <li><a href="{{ route('unidades.create') }}" class="dropdown-item">Incluir Unidades</a></li>
+                                    <li><a href="{{ route('unidades.tipo_unidade') }}" class="dropdown-item">Tipos de Unidade</a></li>
                                 </ul>
                                 <li class="nav-item dropdown">
                                     <a href="#" class="nav-link active" id="solicitacoes-dropdown" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false">

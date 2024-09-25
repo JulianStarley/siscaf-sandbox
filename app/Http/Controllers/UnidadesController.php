@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TipoUnidade;
+use App\Models\TipoUnidades;
 use App\Models\Unidades;
 use Illuminate\Http\Request;
 
@@ -146,6 +148,12 @@ class UnidadesController extends Controller
             }else{
                 return redirect()->route('unidades.index')->with('error', 'Unidade não encontrada');
             }
+        }
+
+        public function tipo_unidade()
+        {
+            $tipo_unidade = TipoUnidade::all();
+            return view('unidades.tipo_unidade', compact('tipo_unidade'));
         }
     }
 

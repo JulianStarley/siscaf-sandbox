@@ -52,6 +52,7 @@ Route::group(['prefix' => 'unidades'], function() {
     Route::post('/store', '\App\Http\Controllers\UnidadesController@store')->name('unidades.store');
     Route::get('/{id}/edit', '\App\Http\Controllers\UnidadesController@edit')->name('unidades.edit');
     Route::put('/{id}', '\App\Http\Controllers\UnidadesController@update')->name('unidades.update');
+    Route::get('/tipo_unidade', '\App\Http\Controllers\UnidadesController@tipo_unidade')->name('unidades.tipo_unidade');
     Route::delete('/{id}/delete', '\App\Http\Controllers\UnidadesController@delete')->name('unidades.delete');
 });
 
