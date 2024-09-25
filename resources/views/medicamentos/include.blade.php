@@ -14,7 +14,7 @@
 <form method="POST" action="{{ route('medicamentos.store') }}">
     @csrf
 
-    <div class="mb-3 form-group col-md-6">
+    <div class="mb-3 form-group col-md-9">
         <label for="medicamento">Medicamento</label>
         <select name="medicamento" id="medicamento" class="form-control" required>
             @foreach ($medicamentos as $medicamento)
@@ -66,12 +66,51 @@
           <th>Código de Barras</th>
           <th>Fator Embalagem</th>
           <th>Observação</th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody></tbody> </table>
   </div>
 
-  <button type="button" id="btn-finalizar" class="mb-3 btn btn-primary" disabled>Finalizar</button>
+  <button type="button" id="btn-finalizar" class="mb-3 btn btn-primary">Finalizar</button>
+<!-- Modal para verificar e confirmar a inclusão -->
+<div class="modal fade" id="modal-verificar-dados" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Verifique os dados para confirmar a inclusão</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Medicamento</th>
+                <th>Quantidade</th>
+                <th>Validade</th>
+                <th>Lote</th>
+                <th>Código de Barras</th>
+                <th>Fator Embalagem</th>
+                <th>Observação</th>
+              </tr>
+            </thead>
+            <tbody id="modal-table-body">
+              <!-- Os dados serão renderizados aqui -->
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" id="btn-salvar-modal" class="btn btn-primary">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
 
   <script>
     $(document).ready(function() {
@@ -107,7 +146,8 @@
           lote,
           cod_barras,
           fator_embalagem,
-          observacao
+          observacao,
+          '<button type="button" class="btn btn-danger btn-excluir">Excluir</button>'
         ]).draw(false);
 
         // Limpar os campos do formulário
@@ -119,10 +159,63 @@
         $('#fator_embalagem').val('');
         $('#observacao').val('');
 
+        $('#medicamentos-table').on('click', '.btn-excluir', function() {
+            let row = $(this).closest('tr');
+            let index = row.index();
+            medicamentos.splice(index, 1);
+            table.row(row).remove().draw(false);
+        });
       });
     });
   </script>
 
+  <!-- Adicione o seguinte código no script para abrir o modal quando o botão "Finalizar" for clicado -->
+<script>
+    $(document).ready(function() {
+      // ...
+
+      $('#btn-finalizar').click(function() {
+        $('#modal-verificar-dados').modal('show');
+        let tableData = [];
+        $('#medicamentos-table tbody tr').each(function() {
+          let row = [];
+          $(this).find('td').each(function() {
+            row.push($(this).text());
+          });
+          tableData.push(row);
+        });
+        $('#modal-table-body').html('');
+        $.each(tableData, function(index, row) {
+          let html = '';
+          $.each(row, function(index, cell) {
+            html += '<td>' + cell + '</td>';
+          });
+          $('#modal-table-body').append('<tr>' + html + '</tr>');
+        });
+      });
+
+      $('#btn-salvar-modal').click(function() {
+        // Enviar os dados para o servidor para salvar
+        $.ajax({
+          type: 'POST',
+          url: '{{ route('medicamentos.store') }}',
+          data: {
+            '_token': '{{ csrf_token() }}',
+            'medicamentos': medicamentos
+          },
+          success: function(data) {
+            // Tratar o sucesso da requisição
+            console.log('Dados salvos com sucesso!');
+            $('#modal-verificar-dados').modal('hide');
+          },
+          error: function(xhr, status, error) {
+            // Tratar o erro da requisição
+            console.log('Erro ao salvar dados: ' + error);
+          }
+        });
+      });
+    });
+  </script>
 @endsection
 
 @section('footer')

@@ -85,7 +85,8 @@ class MedicamentoController extends Controller
     public function edit($id)
     {
         $medicamentos = Medicamentos::find($id);
-        return view('medicamentos.edit', compact('medicamentos'));
+        $estoques = Estoques::all();
+        return view('medicamentos.edit', compact('medicamentos','estoques'));
     }
 
     /**

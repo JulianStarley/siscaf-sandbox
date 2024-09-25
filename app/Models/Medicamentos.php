@@ -25,7 +25,7 @@ class Medicamentos extends Model
         'user_id',
      ];
 
-     public function estoque()
+     public function estoques()
      {
         return $this->belongsTo(Estoques::class);
      }

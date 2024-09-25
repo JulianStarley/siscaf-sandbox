@@ -54,8 +54,8 @@
                     <td>{{ $medicamento->fator_embalagem }}</td>
                     <td>{{ $medicamento->observacao }}</td>
                     <td>
-                        <a href="{{ route('medicamentos.edit', $medicamento->id) }}" class="btn btn-primary">Editar</a>
-                        <a href="{{ route('medicamentos.destroy', $medicamento->id) }}" class="btn btn-danger">Excluir</a>
+                        <a href="{{ route('medicamentos.edit', $medicamento->id) }}" class="mb-3 btn btn-primary"><i class="bi bi-pencil-square"></i> Editar</a>
+                        <a href="{{ route('medicamentos.delete', $medicamento->id) }}" class="btn btn-danger"><i class="bi bi-trash"></i>Excluir</a>
                     </td>
                 </tr>
             @endforeach
