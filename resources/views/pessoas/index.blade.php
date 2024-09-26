@@ -18,12 +18,27 @@
             <a href="{{ route('pessoas.create') }}" class="text-white btn btn-primary btn-lg">Criar pessoa</a>
         </div>
         <div class="col-lg-3">
+
+        </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <select class="form-select d-inline-block w-auto" id="per_page">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+            <span>resultados por página</span>
+        </div>
+        <div>
             <div class="input-group input-group-lg">
                 <input type="text" id="search" class="form-control" placeholder="Buscar..." onkeyup="filterTable()">
                 <span class="input-group-text"><i class="bi bi-search"></i></span>
             </div>
         </div>
     </div>
+
     <div class="col-md-12">
         <table class="table table-striped" id="table-pessoas">
             <thead>
@@ -53,9 +68,34 @@
                     </tr>
                 @endforeach
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <div class="d-flex justify-content-between">
+                            <span id="recordInfo">Mostrando de {{ $pessoas->firstItem() }} até {{ $pessoas->lastItem() }} de {{ $pessoas->total() }} registros</span>
+                            <nav>
+                                <ul class="pagination" id="pagination">
+                                    {{ $pessoas->links() }}
+                                </ul>
+                            </nav>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
+
+        <!-- Seleção de quantidade de registros por página -->
+        <script>
+            document.getElementById("per_page").addEventListener("change", function() {
+                var perPage = this.value;
+                window.location.href = "{{ route('pessoas.index') }}?per_page=" + perPage;
+            });
+        </script>
+
     </div>
+
     <div id="no-results" style="display: none;">Dados Inexistentes!</div>
+
     <script>
         function filterTable() {
           // Pega o termo de pesquisa
@@ -65,46 +105,42 @@
           var tableBody = document.getElementById("tbody-pessoas");
           var tableRows = tableBody.getElementsByTagName("tr");
 
-          // Percorre cada linha
+          // Perc orre todas as linhas
           for (var i = 0; i < tableRows.length; i++) {
             var row = tableRows[i];
 
-            // Pega todas as células da tabela dentro da linha (excluindo os botões de ação)
-            var tableCells = row.getElementsByTagName("td");
+            // Pega os dados da linha
+            var nome = row.getAttribute("data-nome").toLowerCase();
+            var cpf = row.getAttribute("data-cpf").toLowerCase();
+            var telefone = row.getAttribute("data-telefone").toLowerCase();
+            var tipo = row.getAttribute("data-tipo").toLowerCase();
 
-            // Sinalizador que indica se a linha corresponde ao termo de pesquisa
-            var matchFound = false;
-
-            // Percorre cada célula e verifica se ela contém o termo de pesquisa
-            for (var j = 0; j < tableCells.length; j++) {
-              var cellText = tableCells[j].textContent.toLowerCase();
-              if (cellText.indexOf(searchTerm) > -1) {
-                matchFound = true;
-                break; // Saia do loop interno se uma correspondência for encontrada
-              }
-            }
-
-            // Ocultar ou mostrar a linha com base na correspondência
-            if (matchFound) {
+            // Verifica se o termo de pesquisa está presente em alguma das colunas
+            if (nome.includes(searchTerm) || cpf.includes(searchTerm) || telefone.includes(searchTerm) || tipo.includes(searchTerm)) {
               row.style.display = "";
             } else {
               row.style.display = "none";
             }
           }
 
-          // Opcionalmente, exiba uma mensagem "Sem resultados" se todas as linhas estiverem ocultas
-          var noResults = document.getElementById("no-results");
-          var allRowsHidden = true;
+          // Verifica se há resultados
+          var hasResults = false;
           for (var i = 0; i < tableRows.length; i++) {
-            if (tableRows[i].style.display !== "none") {
-              allRowsHidden = false;
+            if (tableRows[i].style.display != "none") {
+              hasResults = true;
               break;
             }
           }
-          noResults.style.display = allRowsHidden ? "" : "none";
+
+          // Mostra ou esconde a mensagem de "Dados Inexistentes!"
+          if (hasResults) {
+            document.getElementById("no-results").style.display = "none";
+          } else {
+            document.getElementById("no-results").style.display = "block";
+          }
         }
-        </script>
-   <!-- Content area here -->
+    </script>
+
 @endsection
 
 @section('footer')

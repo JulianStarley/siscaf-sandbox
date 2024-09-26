@@ -27,6 +27,7 @@
     <div class="row">
         <div class="col-md-12 col-lg-offset-2">
             <div class= "mb-3 form-check form-switch">
+                <input type="hidden" name="ativo" value="N">
                 <input class="form-check-input" type="checkbox" id="ativo" name="ativo" value="S" checked>
                 <label class="form-check-label" for="ativo">Ativo</label>
             </div>

@@ -9,7 +9,7 @@
 @section('content')
     <!-- Content area here -->
     content
-    @include('dashboardGerencial')
+    @include('layouts_teste.dashboardGerencial')
 @endsection
 
 @section('footer')

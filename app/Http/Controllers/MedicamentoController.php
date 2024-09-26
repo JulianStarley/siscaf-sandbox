@@ -46,22 +46,27 @@ class MedicamentoController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'medicamento' => 'required|string',
+            'codigo' => 'nullable|string',
+            'ativo' => 'boolean',
+        ]);
 
-    $medicamento = new Medicamentos();
-    $medicamento->medicamento = $request->input('medicamento');
-    $medicamento->codigo = $request->input('codigo');
-    $medicamento->ativo = $request->input('ativo');
-    $medicamento->estoque->quantidade = $request->input('quantidade');
-    $medicamento->estoque->validade = $request->input('validade');
-    $medicamento->estoque->lote = $request->input('lote');
-    $medicamento->estoque->cod_barras = $request->input('cod_barras');
-    $medicamento->estoque->fator_embalagem = $request->input('fator_embalagem');
-    $medicamento->observacao = $request->input('observacao');
-    $medicamento->user_id = $request->input('user_id');
-    $medicamento->save();
 
-   return redirect()->route('medicamentos.index')->with('success', 'Dados  do medicamento cadastrados com sucesso!');
 
+        $medicamento = new Medicamentos();
+        $medicamento->nome = $validatedData['medicamento'];
+        $medicamento->codigo = $validatedData['codigo'];
+        if ($request->filled('ativo')) {
+            $medicamento->ativo = $request->input('ativo');
+        } else {
+            $medicamento->ativo = false; // ou "N" dependendo do seu modelo
+        }
+
+        dd($validatedData);
+        $medicamento->save();
+        
+        return redirect()->route('medicamentos.index')->with('success', 'Medicamento adicionado com sucesso!');
     }
 
     /**
@@ -84,9 +89,12 @@ class MedicamentoController extends Controller
      */
     public function edit($id)
     {
-        $medicamentos = Medicamentos::find($id);
-        $estoques = Estoques::all();
-        return view('medicamentos.edit', compact('medicamentos','estoques'));
+    $medicamentos = Medicamentos::find($id);
+    $estoque = $medicamentos->estoque; // Get the associated estoque
+    if (!$estoque) {
+        $estoque = new Estoques(); // Create a new estoque if none exists
+    }
+    return view('medicamentos.edit', compact('medicamentos', 'estoque'));
     }
 
     /**

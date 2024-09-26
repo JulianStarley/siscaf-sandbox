@@ -13,10 +13,12 @@ class PessoaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pessoas = Pessoa::all();
-        return view('pessoas.index', compact('pessoas'));
+    $per_page = $request->input('per_page', 10);
+    $pessoas = Pessoa::paginate($per_page);
+
+    return view('pessoas.index', compact('pessoas'));
     }
 
     /**

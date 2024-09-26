@@ -24,6 +24,7 @@ class Estoques extends Model
         'lote',
         'cod_barras',
         'fator_embalagem',
+        
     ];
 
     public function medicamentos()
