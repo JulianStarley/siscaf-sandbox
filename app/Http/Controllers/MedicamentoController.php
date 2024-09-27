@@ -49,7 +49,7 @@ class MedicamentoController extends Controller
         $validatedData = $request->validate([
             'medicamento' => 'required|string',
             'codigo' => 'nullable|string',
-            'ativo' => 'boolean',
+            'ativo' => 'string',
         ]);
 
 
@@ -60,12 +60,12 @@ class MedicamentoController extends Controller
         if ($request->filled('ativo')) {
             $medicamento->ativo = $request->input('ativo');
         } else {
-            $medicamento->ativo = false; // ou "N" dependendo do seu modelo
+            $medicamento->ativo = "N"; // ou "N" dependendo do seu modelo
         }
 
-        dd($validatedData);
+
         $medicamento->save();
-        
+
         return redirect()->route('medicamentos.index')->with('success', 'Medicamento adicionado com sucesso!');
     }
 
@@ -105,22 +105,30 @@ class MedicamentoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        {
-            $medicamento = Medicamentos::find($id);
-            $medicamento->medicamento = $request->input('medicamento');
-            $medicamento->codigo = $request->input('codigo');
-            $medicamento->ativo = $request->input('ativo');
-            $medicamento->quantidade = $request->input('quantidade');
-            $medicamento->validade = $request->input('validade');
-            $medicamento->lote = $request->input('lote');
-            $medicamento->cod_barras = $request->input('cod_barras');
-            $medicamento->fator_embalagem = $request->input('fator_embalagem');
-            $medicamento->observacao = $request->input('observacao');
-            $medicamento->save();
-            return redirect()->route('medicamentos.index')->with('success', 'Medicamento alterado com sucesso');
-        }
+{
+    $medicamento = Medicamentos::find($id);
+    if ($medicamento) {
+        $medicamento->medicamento = $request->input('medicamento');
+        $medicamento->codigo = $request->input('codigo');
+        $medicamento->ativo = $request->input('ativo');
+        $medicamento->observacao = $request->input('observacao');
+        $medicamento->save();
+
+        // Criar um novo estoque relacionado ao medicamento
+        $estoque = new Estoques();
+        $estoque->medicamento_id = $medicamento->id;
+        $estoque->quantidade = $request->input('quantidade');
+        $estoque->validade = $request->input('validade');
+        $estoque->lote = $request->input('lote');
+        $estoque->cod_barras = $request->input('cod_barras');
+        $estoque->fator_embalagem = $request->input('fator_embalagem');
+        $estoque->save();
+
+        return redirect()->route('medicamentos.index')->with('success', 'Medicamento alterado com sucesso');
+    } else {
+        return redirect()->route('medicamentos.index')->with('error', 'Medicamento não encontrado');
     }
+}
 
     /**
      * Remove the specified resource from storage.

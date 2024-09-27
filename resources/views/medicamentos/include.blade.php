@@ -201,8 +201,7 @@
           url: '{{ route('medicamentos.store') }}',
           data: {
             '_token': '{{ csrf_token() }}',
-            'medicamentos': medicamentos
-          },
+            'medicamentos': medicamentos          },
           success: function(data) {
             // Tratar o sucesso da requisição
             console.log('Dados salvos com sucesso!');

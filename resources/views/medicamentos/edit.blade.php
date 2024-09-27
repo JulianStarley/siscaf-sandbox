@@ -20,9 +20,10 @@
             <label for="codigo">Código</label>
             <input type="text" class="form-control" id="codigo" name="codigo" value="{{ $medicamentos->codigo }}">
         </div>
-        <div class="mb-3 form-group">
-            <label for="ativo">Ativo</label>
-            <input type="text" class="form-control" id="ativo" name="ativo" value="{{ $medicamentos->ativo }}">
+        <div class= "mb-3 form-check form-switch">
+            <input type="hidden" name="ativo" value="N">
+            <input class="form-check-input" type="checkbox" id="ativo" name="ativo" value="S" checked>
+            <label class="form-check-label" for="ativo">Ativo</label>
         </div>
         <div class="mb-3 form-group col-md-3">
             <label for="quantidade">Quantidade</label>
@@ -38,7 +39,7 @@
         </div>
         <div class="mb-3 form-group col-md-3">
             <label for="cod_barras">Código de Barras</label>
-            <input type="number" class="form-control" id="cod_barras" name="cod_barras" value="{{ $estoque->cod_barras }}">
+            <input type="number" class="form-control" id="cod_barras" name="cod_barras" value="{{ $estoque->cod_barras }}" maxlength="13" pattern="[0-9]{1,13}">
         </div>
         <div class="mb-3 form-group col-md-3">
             <label for="fator_embalagem">Fator de Embalagem</label>
