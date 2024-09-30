@@ -69,7 +69,10 @@
           <th>Ações</th>
         </tr>
       </thead>
-      <tbody></tbody> </table>
+      <tbody>
+        <!-- Os dados serão renderizados aqui -->
+      </tbody>
+    </table>
   </div>
 
   <button type="button" id="btn-finalizar" class="mb-3 btn btn-primary">Finalizar</button>
@@ -108,9 +111,6 @@
       </div>
     </div>
   </div>
-
-
-
 
   <script>
     $(document).ready(function() {
@@ -164,6 +164,7 @@
             let index = row.index();
             medicamentos.splice(index, 1);
             table.row(row).remove().draw(false);
+
         });
       });
     });
@@ -215,6 +216,7 @@
       });
     });
   </script>
+
 @endsection
 
 @section('footer')

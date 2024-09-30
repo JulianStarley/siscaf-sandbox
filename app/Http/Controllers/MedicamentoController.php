@@ -116,7 +116,6 @@ class MedicamentoController extends Controller
 
         // Criar um novo estoque relacionado ao medicamento
         $estoque = new Estoques();
-        $estoque->medicamento_id = $medicamento->id;
         $estoque->quantidade = $request->input('quantidade');
         $estoque->validade = $request->input('validade');
         $estoque->lote = $request->input('lote');
