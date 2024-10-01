@@ -11,7 +11,7 @@ class Estoques extends Model
 
     protected $table =  'estoques';
 
-    protected $guarded = 'id';
+    protected $guarded = ['id'];
     /**
      * The attributes that are mass assignable.
      *
@@ -24,7 +24,7 @@ class Estoques extends Model
         'lote',
         'cod_barras',
         'fator_embalagem',
-        
+
     ];
 
     public function medicamentos()

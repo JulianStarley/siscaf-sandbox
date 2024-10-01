@@ -43,21 +43,30 @@
         </thead>
         <tbody>
             @foreach($medicamentos as $medicamento)
+               @php
+                   $estoque = $estoques->where('medicamentos_id', $medicamento->id)->first();
+               @endphp
                 <tr>
                     <td>{{ $medicamento->medicamento }}</td>
                     <td>{{ $medicamento->codigo }}</td>
                     <td>{{ $medicamento->ativo }}</td>
-                    <td>{{ $medicamento->quantidade }}</td>
-                    <td>{{ $medicamento->validade }}</td>
-                    <td>{{ $medicamento->lote }}</td>
-                    <td>{{ $medicamento->cod_barras }}</td>
-                    <td>{{ $medicamento->fator_embalagem }}</td>
                     <td>{{ $medicamento->observacao }}</td>
+                    <td>{{ $estoque->quantidade }}</td>
+                    <td>{{ $estoque->validade }}</td>
+                    <td>{{ $estoque->lote }}</td>
+                    <td>{{ $estoque->cod_barras }}</td>
+                    <td>{{ $estoque->fator_embalagem }}</td>
+
                     <td>
                         <a href="{{ route('medicamentos.edit', $medicamento->id) }}" class="mb-3 btn btn-primary"><i class="bi bi-pencil-square"></i> Editar</a>
-                        <a href="{{ route('medicamentos.delete', $medicamento->id) }}" class="btn btn-danger"><i class="bi bi-trash"></i>Excluir</a>
+                        <form action="{{ route('pessoas.delete', $pessoa->id) }}" id="delete-form" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger d-flex align-items-center"><i class="bi bi-trash"></i> Excluir</button>
+                        </form>
                     </td>
                 </tr>
+
             @endforeach
         </tbody>
     </table>
