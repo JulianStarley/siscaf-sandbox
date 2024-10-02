@@ -16,9 +16,8 @@ class MedicamentoController extends Controller
      */
     public function index()
     {
-        $medicamentos = Medicamentos::paginate(10);
-        $estoques = Estoques::paginate(10);
-        return view('medicamentos.index', compact('medicamentos', 'estoques'));
+    $medicamentos = Medicamentos::with('estoques')->paginate(10);
+    return view('medicamentos.index', compact('medicamentos'));
     }
 
     /**
@@ -141,6 +140,17 @@ class MedicamentoController extends Controller
         $medicamento = Medicamentos::find($id);
         $medicamento->delete();
         return redirect()->route('medicamentos.index');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $pessoas = Medicamentos::where('nome', 'like', '%' . $search . '%')
+            ->orWhere('cpf', 'like', '%' . $search . '%')
+            ->orWhere('telefone', 'like', '%' . $search . '%')
+            ->orWhere('tipo_pessoa', 'like', '%' . $search . '%')
+            ->get();
+        return response()->json($pessoas);
     }
 
 

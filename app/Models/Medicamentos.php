@@ -25,6 +25,7 @@ class Medicamentos extends Model
         'ativo',
         '[observacao]',
         'user_id',
+        'estoques_id'
      ];
 
      public function estoques()

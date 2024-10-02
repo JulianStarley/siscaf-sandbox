@@ -18,9 +18,10 @@ class MedicamentosFactory extends Factory
     {
         return [
             'medicamento' => $this->faker->name(),
-            'codigo' => $this->faker->word(),
+            'codigo' => $this->faker->randomNumber(5),
             'ativo' => $this->faker->randomElement(['S', 'N']),
             'observacao' => $this->faker->sentence,
+            'estoques_id' => \App\Models\Estoques::factory()->create()->id,
         ];
     }
 }
