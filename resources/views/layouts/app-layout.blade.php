@@ -95,10 +95,11 @@
                         <nav>
                             <i class="bi bi-person-circle"></i>
                         </nav>
-                            @yield('header')
+
                 </div>
         </div>
     </div>
+    @yield('header')
 |</header>
 
     <div class="container">

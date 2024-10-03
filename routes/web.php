@@ -106,6 +106,16 @@ Route::group(['prefix' => 'consumo-itens'], function (){
     Route::delete('/{id}/delete', '\App\Http\Controllers\ConsumoItemController@delete')->name('consumo-itens.delete');
     });
 
+    Route::group(['prefix' => 'tipoPessoa'], function (){
+        Route::get('/', '\App\Http\Controllers\TipoPessoaController@index')->name('tipoPessoa.index');
+        Route::get('/create', '\App\Http\Controllers\TipoPessoaController@create')->name('tipoPessoa.create');
+        Route::post('/store', '\App\Http\Controllers\TipoPessoaController@store')->name('tipoPessoa.store');
+        Route::get('/{id}', '\App\Http\Controllers\TipoPessoaController@show')->name('tipoPessoa.show');
+        Route::get('/{id}/edit', '\App\Http\Controller\TipoPessoaController@edit')->name('tipoPessoa.edit');
+        Route::put('/{id}', '\App\Http\Controllers\TipoPessoaController@update')->name('tipoPessoa.update');
+        Route::delete('/{id}/delete', '\App\Http\Controllers\TipoPessoaController@delete')->name('tipoPessoa.delete');
+        });
+
 Route::get('/testescalculos', function(){
     return view('testescalculos');
 })->name('testescalculos');

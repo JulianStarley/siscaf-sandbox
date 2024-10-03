@@ -44,7 +44,6 @@ class PessoaController extends Controller
         $pessoa->cpf = $request->input('cpf');
         $pessoa->telefone = $request->input('telefone');
         $pessoa->observacao = $request->input('observacao');
-        $pessoa->user_id = auth()->id();
         $pessoa->tipo_pessoa = $request->input('tipo_pessoa');
         $pessoa->save();
         return redirect()->route('pessoas.index')->with('success', 'Pessoa criada com sucesso!');
