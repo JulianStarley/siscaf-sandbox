@@ -7,11 +7,14 @@
 @endsection
 
 @section('content')
-    <form action="" method="post">
+    <form action="{{ route('tipo_pessoa.store') }}" method="post">
         @csrf
-        <label for="tipoPessoa">Digite seu nome:</label>
-        <input type="text" id="tipoPessoa" name="tipoPessoa"><br><br>
-        <input type="submit" value="Enviar">
+        <div class="mb-3 form-group col-md-6">
+            <label for="tipo_pessoa">Nome</label>
+            <input type="text" class="form-control" id="tipo_pessoa" name="tipo_pessoa" placeholder="campo obrigatório">
+            <small>Campo obrigatório</small>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">Incluir</button>
     </form>
 @endsection
 

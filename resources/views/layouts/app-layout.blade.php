@@ -150,7 +150,7 @@
                                         <li><a href="{{ route('farmaceuticos.index') }}" class="dropdown-item">Listar Farmaceuticos</a></li>
                                         <li><a href="{{ route('farmaceuticos.create') }}" class="dropdown-item">Incluir Farmaceuticos</a></li>
                                     </ul>
-                            </li>
+                                </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link active" id="unid-dropdown" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false">
                                     <i class="bi bi-building"></i>Unidades
@@ -180,10 +180,21 @@
                                             <a href="#" class="nav-link active" id="transferencias-dropdown" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false">
                                                 <i class="bi bi-arrow-left-right"></i>Transferências
                                             </a>
-                                    <ul class="dropdown-menu" aria-labelledby="tranferencias-dropdown">
-                                        <li><a href="{{ route('transferencias') }}" class="dropdown-item">Listar Transferências</a></li>
+                                            <ul class="dropdown-menu" aria-labelledby="tranferencias-dropdown">
+                                                <li><a href="{{ route('transferencias') }}" class="dropdown-item">Listar Transferências</a></li>
                                         </li>
                                     </ul>
+
+                                    <li class="nav-item dropdown">
+                                        <a href="#" onClick="eventPreventDefault(); document.getElementById('incluir-estoque-form').submit()" class="nav-link active" id="med-dropdown" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false">
+                                            <i class="bi bi-person-video2"></i>TipoPessoa
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="med-dropdown">
+                                            <li><a href="{{ route('tipo_pessoa.index') }}" class="dropdown-item">Listar tipos</a></li>
+                                            <li><a href="{{ route('tipo_pessoa.create') }}" class="dropdown-item">Novo tipo</a></li>
+
+                                        </ul>
+                                    </li>
                                 </ul>
                             </ul>
                     </nav>

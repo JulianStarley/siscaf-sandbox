@@ -15,7 +15,7 @@ class PessoaController extends Controller
      */
     public function index(Request $request)
     {
-    $per_page = $request->input('per_page', 10);
+    $per_page = $request->input('per_page', 100);
     $pessoas = Pessoa::paginate($per_page);
 
     return view('pessoas.index', compact('pessoas'));
@@ -106,7 +106,7 @@ class PessoaController extends Controller
     }
 
     public function search(Request $request)
-{
+    {
     $search = $request->input('search');
     $pessoas = Pessoa::where('nome', 'like', '%' . $search . '%')
         ->orWhere('cpf', 'like', '%' . $search . '%')
@@ -114,5 +114,5 @@ class PessoaController extends Controller
         ->orWhere('tipo_pessoa', 'like', '%' . $search . '%')
         ->get();
     return response()->json($pessoas);
-}
+    }
 }

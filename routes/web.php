@@ -106,15 +106,27 @@ Route::group(['prefix' => 'consumo-itens'], function (){
     Route::delete('/{id}/delete', '\App\Http\Controllers\ConsumoItemController@delete')->name('consumo-itens.delete');
     });
 
-    Route::group(['prefix' => 'tipoPessoa'], function (){
-        Route::get('/', '\App\Http\Controllers\TipoPessoaController@index')->name('tipoPessoa.index');
-        Route::get('/create', '\App\Http\Controllers\TipoPessoaController@create')->name('tipoPessoa.create');
-        Route::post('/store', '\App\Http\Controllers\TipoPessoaController@store')->name('tipoPessoa.store');
-        Route::get('/{id}', '\App\Http\Controllers\TipoPessoaController@show')->name('tipoPessoa.show');
-        Route::get('/{id}/edit', '\App\Http\Controller\TipoPessoaController@edit')->name('tipoPessoa.edit');
-        Route::put('/{id}', '\App\Http\Controllers\TipoPessoaController@update')->name('tipoPessoa.update');
-        Route::delete('/{id}/delete', '\App\Http\Controllers\TipoPessoaController@delete')->name('tipoPessoa.delete');
+    Route::group(['prefix' => 'tipo_pessoa'], function (){
+        Route::get('/', 'App\Http\Controllers\TipoPessoaController@index')->name('tipo_pessoa.index');
+        Route::get('/create', '\App\Http\Controllers\TipoPessoaController@create')->name('tipo_pessoa.create');
+        Route::post('/store', '\App\Http\Controllers\TipoPessoaController@store')->name('tipo_pessoa.store');
+        Route::get('/{id}', '\App\Http\Controllers\TipoPessoaController@show')->name('tipo_pessoa.show');
+        Route::get('/{id}/edit', '\App\Http\Controllers\TipoPessoaController@edit')->name('tipo_pessoa.edit');
+        Route::put('/{id}', '\App\Http\Controllers\TipoPessoaController@update')->name('tipo_pessoa.update');
+        Route::delete('/{id}/delete', '\App\Http\Controllers\TipoPessoaController@delete')->name('tipo_pessoa.delete');
         });
+
+    Route::group(['prefix' => 'fornecedor'], function (){
+        Route::get('/', 'App\Http\Controllers\FornecedorController@index')->name('fornecedor.index');
+        Route::get('/create', '\App\Http\Controllers\FornecedorController@create')->name('fornecedor.create');
+        Route::post('/store', '\App\Http\Controllers\FornecedorController@store')->name('fornecedor.store');
+        Route::get('/{id}', '\App\Http\Controllers\FornecedorController@show')->name('fornecedor.show');
+        Route::get('/{id}/edit', '\App\Http\Controllers\FornecedorController@edit')->name('fornecedor.edit');
+        Route::put('/{id}', '\App\Http\Controllers\FornecedorController@update')->name('fornecedor.update');
+        Route::delete('/{id}/delete', '\App\Http\Controllers\FornecedorController@delete')->name('fornecedor.delete');
+        });
+
+
 
 Route::get('/testescalculos', function(){
     return view('testescalculos');

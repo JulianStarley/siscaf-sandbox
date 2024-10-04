@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TipoPessoa;
-use App\Http\Requests\StoreTipoPessoaRequest;
-use App\Http\Requests\UpdateTipoPessoaRequest;
-use Request;
+use Illuminate\Http\Request;
 
 class TipoPessoaController extends Controller
 {
@@ -14,11 +12,12 @@ class TipoPessoaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(StoreTipoPessoaRequest  $request)
+    public function index(Request $request)
     {
-        $tipoPessoas = TipoPessoa::paginate(50);
+        $per_page = $request->input('per_page', 100);
+        $tipo_pessoas_OBJ = TipoPessoa::paginate($per_page);
 
-        return view('tipoPessoa.index', compact('tipoPessoa'));
+    return view('tipo_pessoa.index', compact('tipo_pessoas_OBJ'));
     }
 
     /**
@@ -28,70 +27,85 @@ class TipoPessoaController extends Controller
      */
     public function create()
     {
-        return view('tipoPessoa.create');
+        return view('tipo_pessoa.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreTipoPessoaRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTipoPessoaRequest $request)
+    public function store(Request $request)
     {
-        $tipoPessoa = new TipoPessoa();
-        $tipoPessoa->nome = $request->input('tipoPessoa');
-        $tipoPessoa->save();
+        $tipo_pessoas_OBJ = new TipoPessoa();
+        $tipo_pessoas_OBJ->tipo_pessoa = $request->input('tipo_pessoa');
+        $tipo_pessoas_OBJ->save();
+        return redirect()->route('tipo_pessoa.index')->with('success', 'Tipo criado com sucesso!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TipoPessoa  $tipoPessoa
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(TipoPessoa $tipoPessoa)
+    public function show($id)
     {
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TipoPessoa  $tipoPessoa
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(TipoPessoa $id)
+    public function edit($id)
     {
-        $tipoPessoa = TipoPessoa::find($id);
+        $tipo_pessoas_OBJ = TipoPessoa::find($id);
+        return view('tipo_pessoa.edit', compact('tipo_pessoas_OBJ'));
+
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateTipoPessoaRequest  $request
-     * @param  \App\Models\TipoPessoa  $tipoPessoa
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTipoPessoaRequest $request, TipoPessoa $id)
+    public function update(Request $request, $id)
     {
-        $tipoPessoa = TipoPessoa::find($id);
-        $tipoPessoa->nome = $request->input('tipoPessoa');
-        $tipoPessoa->save();
-        return redirect()->route('tipoPessoa.index')->with('successo', 'Tipo de pessoa alterada com sucesso');
+        $tipo_pessoas_OBJ = TipoPessoa::find($id);
+        $tipo_pessoas_OBJ->tipo_pessoa = $request->input('tipo_pessoa');
+        $tipo_pessoas_OBJ->save();
+        return redirect()->route('tipo_pessoa.index')->with('success', 'Tipo atualizado com sucesso!');
 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TipoPessoa  $tipoPessoa
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipoPessoa $id)
+    public function destroy($id)
     {
-        $tipoPessoa = TipoPessoa::find($id);
-        $tipoPessoa->delete();
-        return redirect()->route('tipoPessoa.index')->with('success', 'Tipo excluído com sucesso');
+        $tipo_pessoas_OBJ = TipoPessoa::find($id);
+        $tipo_pessoas_OBJ->delete();
+        return redirect()->route('tipo_pessoa.index')->with('success', 'Tipo excluído com sucesso!');
     }
+
+    public function search(Request $request)
+    {
+    $search = $request->input('search');
+    $tipo_pessoas_OBJ = TipoPessoa::where('nome', 'like', '%' . $search . '%')
+        ->orWhere('cpf', 'like', '%' . $search . '%')
+        ->orWhere('telefone', 'like', '%' . $search . '%')
+        ->orWhere('tipo_pessoa', 'like', '%' . $search . '%')
+        ->get();
+    return response()->json($tipo_pessoas_OBJ);
+    }
+
 }
