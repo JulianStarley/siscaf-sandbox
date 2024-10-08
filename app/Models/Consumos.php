@@ -29,7 +29,7 @@ class Consumos extends Model
     ];
 
     public function unidade(){
-        return $this->belongsTo(Unidades::class, 'unidade_id', 'id');
+        return $this->belongsTo(Unidade::class, 'unidade_id', 'id');
     }
 
     public function user(){

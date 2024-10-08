@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFornecedoresTable extends Migration
+class CreateDispensacoesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateFornecedoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('fornecedores', function (Blueprint $table) {
+        Schema::create('dispensacoes', function (Blueprint $table) {
             $table->id();
-            $table->string('razao_social');
-            $table->string('nome_fantasia');
-            $table->string('cnpj');
+            $table->decimal('quantidade_dispensada' ,8 , 2);
+            $table->dateTime('data_dispensacao');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateFornecedoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fornecedores');
+        Schema::dropIfExists('dispensacaos');
     }
 }

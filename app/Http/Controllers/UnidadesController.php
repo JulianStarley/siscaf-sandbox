@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TipoUnidade;
-use App\Models\TipoUnidades;
-use App\Models\Unidades;
+use App\Models\Unidade;
 use Illuminate\Http\Request;
 
 class UnidadesController extends Controller
@@ -16,7 +15,7 @@ class UnidadesController extends Controller
      */
     public function index()
     {
-        $unidades = Unidades::all();
+        $unidades = Unidade::all();
         return view('unidades.index', compact('unidades'));
     }
 
@@ -39,8 +38,6 @@ class UnidadesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'pessoas_id'=>'required',
-        'tipo_farmacia' => 'required',
         'unidade' => 'required',
         'modulo' => 'required',
         'funcionarios_responsaveis' => 'required',
@@ -50,7 +47,7 @@ class UnidadesController extends Controller
         'distancia_referencia_modulo' => 'required',
         ]);
 
-        $unidades = new Unidades();
+        $unidades = new Unidade();
         $unidades->pessoas_id= $request->input('pessoas_id');
         $unidades->tipo_farmacia= $request->input('tipo_farmacia');
         $unidades->unidade = $request->input('unidade');
@@ -74,7 +71,7 @@ class UnidadesController extends Controller
      */
     public function show($id)
     {
-        $unidades = Unidades::find($id);
+        $unidades = Unidade::find($id);
         return view('unidades.show', compact('unidades'));
     }
 
@@ -86,7 +83,7 @@ class UnidadesController extends Controller
      */
     public function edit($id)
     {
-        $unidades = Unidades::find($id);
+        $unidades = Unidade::find($id);
         return view('unidades.edit',  compact('unidades'));
     }
 
@@ -111,7 +108,7 @@ class UnidadesController extends Controller
             'distancia_referencia_modulo' => 'required|numeric',
             ]);
 
-            $unidades = Unidades::find($id);
+            $unidades = Unidade::find($id);
 
         if(!$unidades){
             return redirect()->route('unidades.index')->with('error', 'Unidade não encontrada!');
@@ -141,7 +138,7 @@ class UnidadesController extends Controller
      */
     public function delete($id)
     {
-        $unidades = Unidades::find($id);
+        $unidades = Unidade::find($id);
             if ($unidades){
                 $unidades->delete();
                 return redirect()->route('unidades.index')->with('success', 'Unidade excluída com sucesso');

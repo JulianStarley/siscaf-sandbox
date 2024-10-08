@@ -18,22 +18,17 @@ class Solicitacoes extends Model
    protected $guarded = ['id'];
 
    protected $fillable = [
+    'estado_solicitacao',
     'unidade_id',
     'farmaceutico_id',
     'medicamento_id',
     'data_solicitacao',
     'numero_solicitacao',
-    'estado_solicitacao',
-    'observacao',
-    'user_id',
-    'excluido',
-    'user_exclusao_id',
-    'data_exclusao',
 ];
 
 public function unidade()
 {
-    return $this->belongsTo(Unidades::class);
+    return $this->belongsTo(Unidade::class);
 }
 
 public function farmaceutico()

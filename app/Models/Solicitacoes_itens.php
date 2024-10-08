@@ -17,18 +17,13 @@ class Solicitacoes_itens extends Model
      * @var array
      */
     protected $fillable = [
+        'estado_solicitacao_id',
+        'unidade_id',
+        'farmaceuticos_id',
         'medicamento_id',
-        'solicitacoes_id',
         'quantidade_solicitada',
         'data_solicitacao',
-        'quantidade_autorizada',
-        'data_autorizacao',
-        'usuario_autorizador_id',
-        'consumo_estimado',
-        'estoque_atual',
-        'excluido',
-        'user_exclusao_id',
-        'data_exclusao',
+        'numero_solicitacao',
     ];
 
     /**

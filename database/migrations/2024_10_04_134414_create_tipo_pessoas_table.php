@@ -15,6 +15,7 @@ class CreateTipoPessoasTable extends Migration
     {
         Schema::create('tipo_pessoas', function (Blueprint $table) {
             $table->id();
+            $table->string('tipo_pessoa');
             $table->timestamps();
         });
     }

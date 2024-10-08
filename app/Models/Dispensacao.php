@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Fornecedores extends Model
+class Dispensacao extends Model
 {
     use HasFactory;
-    protected $table  = 'fornecedores';
+
+    protected $table = 'dispensacoes';
 
     protected $guarded = ['id'];
 
@@ -17,8 +18,11 @@ class Fornecedores extends Model
      *
      * @var array
      */
-    protected $fillable = [
-       'razao_social',
-       'nome_fantasia',
-    ];
+
+     protected $fillable =
+     [
+        'quantidade_dispensada',
+        'data_dispensacao',
+        'consumos_itens',
+     ];
 }

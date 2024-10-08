@@ -19,6 +19,6 @@ class TipoUnidade extends Model
 
     public function unidades()
     {
-        return $this->hasMany(Unidades::class);
+        return $this->hasMany(Unidade::class);
     }
 }
